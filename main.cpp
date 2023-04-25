@@ -11,6 +11,19 @@ int main(){
 	switch(pilih){
 		case 1:
 			printf("\nIni menu login");
+			printf("\n1. Admin");
+			printf("\n2. User");
+			scanf("%d", &pilih);
+			switch(pilih){
+				case 1:
+					admin();
+					break;
+					
+				case 2:
+					user();
+					break;
+			}
+			
 			break;
 			
 		case 2:
