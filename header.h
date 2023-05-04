@@ -41,8 +41,13 @@ void deletesProfileUser();
 void helpLoginRegister();
 void errorMessageEmail();
 
-//mainMenu
+//admin.c
 void adminPage ();
+void userData();
+void updateAdmin();
+void deleteAdmin();
+
+//mainMenu
 void menu ();
 
 //tree

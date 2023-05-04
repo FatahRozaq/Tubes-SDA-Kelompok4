@@ -279,15 +279,6 @@ void updateProfileUser(){
 						
 					strcpy(edit[index].userId, checkId);
 					
-//					strcpy(check.user, edit[index].user);
-//					strcpy(check.userId, edit[index].userId);
-//					
-//					if ((strcmp(check.user, dataUser.user) == 0 && strcmp(check.user, dataUser.userId) != 0 && strcmp(check.user, dataUser.email) != 0 && strcmp(check.user, dataUser.password) != 0) || (strcmp(check.userId, dataUser.user) != 0 && strcmp(check.userId, dataUser.userId) == 0 && strcmp(check.userId, dataUser.email) != 0 && strcmp(check.userId, dataUser.password) != 0)) {
-//						lineText('a', "\t\t\tThe account is already exist!\t\t\t\t");
-//						fclose(file);
-//						goto updateProfileUser;
-//					}
-					
 				updateProfileUserEmail:
 					lineText('i', "Update Email");
 					scanf("%s",&edit[index].email);fflush(stdin);
@@ -371,24 +362,3 @@ void errorMessageEmail(){
 
 //////////
 
-void adminPage () {
-	printf ("Berhasil login admin\n"); getch ();
-	
-}
-
-void menu () {
-	printf ("Berhasil login\n"); getch ();
-	
-	Node *root = createNode("Apakah Anda mengalami sakit dada? (y/n) ");
-    root->yes = createNode("Apakah sakit dada berlangsung lebih dari 5 menit? (y/n) ");
-    root->no = createNode("Apakah Anda merasa sesak napas? (y/n) ");
-    root->yes->yes = createNode("Anda menderita serangan jantung.");
-    root->yes->no = createNode("Apakah Anda merasa pusing? (y/n) ");
-    root->yes->no->yes = createNode("Anda menderita penyakit jantung koroner.");
-    root->yes->no->no = createNode("Anda menderita angina.");
-    root->no->yes = createNode("Anda menderita gagal jantung.");
-    root->no->no = createNode("Apakah Anda merasa lelah? (y/n) ");
-    root->no->no->yes = createNode("Anda menderita penyakit jantung bawaan.");
- 
-    startAnalysis(root);
-}
