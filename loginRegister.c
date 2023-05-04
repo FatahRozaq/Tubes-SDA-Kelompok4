@@ -379,15 +379,15 @@ void adminPage () {
 void menu () {
 	printf ("Berhasil login\n"); getch ();
 	
-	Node *root = createNode("Apakah Anda mengalami sakit dada?");
-    root->yes = createNode("Apakah sakit dada berlangsung lebih dari 5 menit?");
-    root->no = createNode("Apakah Anda merasa sesak napas?");
+	Node *root = createNode("Apakah Anda mengalami sakit dada? (y/n) ");
+    root->yes = createNode("Apakah sakit dada berlangsung lebih dari 5 menit? (y/n) ");
+    root->no = createNode("Apakah Anda merasa sesak napas? (y/n) ");
     root->yes->yes = createNode("Anda menderita serangan jantung.");
-    root->yes->no = createNode("Apakah Anda merasa pusing?");
+    root->yes->no = createNode("Apakah Anda merasa pusing? (y/n) ");
     root->yes->no->yes = createNode("Anda menderita penyakit jantung koroner.");
     root->yes->no->no = createNode("Anda menderita angina.");
     root->no->yes = createNode("Anda menderita gagal jantung.");
-    root->no->no = createNode("Apakah Anda merasa lelah?");
+    root->no->no = createNode("Apakah Anda merasa lelah? (y/n) ");
     root->no->no->yes = createNode("Anda menderita penyakit jantung bawaan.");
  
     startAnalysis(root);

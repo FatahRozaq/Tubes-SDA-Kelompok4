@@ -29,11 +29,11 @@ void Print_Node(char leaf[]){
 
 void startAnalysis(Node *root) {
     char answer[10];
-    printf("%s (y/n) ", root->question);
+    printf("%s", root->question);
     scanf("%s", answer);
     if (strcmp(answer, "y") == 0) {
         if (root->yes != NULL) startAnalysis(root->yes);
-        else printf("Anda menderita penyakit jantung!\n");
+//        else printf("Anda menderita penyakit jantung!\n");
     } else if (strcmp(answer, "n") == 0) {
         if (root->no != NULL) startAnalysis(root->no);
         else printf("Anda sehat.\n");
