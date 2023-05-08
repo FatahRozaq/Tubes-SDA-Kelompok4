@@ -8,7 +8,7 @@ void menu() {
 		headerLayout(" ", "\t", "Main Menu Page\t");
 		line(0);
 		lineText('o', "\t\t\t\t1. Profile\t\t\t\t\t");
-		lineText('o', "\t\t\t\t2. Games\t\t\t\t\t");
+		lineText('o', "\t\t\t\t2. Medical Check Up\t\t\t\t");
 		lineText('o', "\t\t\t\t3. Settings\t\t\t\t\t");
 		lineText('o', "\t\t\t\t4. Credits\t\t\t\t\t");
 		lineText('o', "\t\t\t\t5. Data Transaction\t\t\t\t");
@@ -19,16 +19,16 @@ void menu() {
 		
 		switch(inputMenu) {
 			case '0':
-				exitProgram();
+				exitProgram ();
 				break;
 				
 			case '1':
-				profile();
+				profile ();
 				break;
 				
-//			case '2':
-//				games();
-//				break;
+			case '2':
+				medicalCheckUp ();
+				break;
 				
 //			case '3':
 //				settings();
@@ -54,11 +54,11 @@ void menu() {
 				errorMessage();
 				goto menu;
 				break;
-		}	
+		}
 		
-		
-		
-	printf ("Berhasil login\n"); getch ();
+}
+
+void medicalCheckUp () {
 	
 	Node *root = createNode("Apakah Anda mengalami sakit dada? (y/n) ");
     root->yes = createNode("Apakah sakit dada berlangsung lebih dari 5 menit? (y/n) ");

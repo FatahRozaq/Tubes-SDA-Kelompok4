@@ -49,6 +49,7 @@ void deleteAdmin();
 
 //mainMenu
 void menu ();
+void medicalCheckUp();
 void profile ();
 void exitProgram ();
 
