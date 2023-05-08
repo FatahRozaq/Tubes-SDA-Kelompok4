@@ -27,26 +27,39 @@ void Print_Node(char leaf[]){
 	printf("Anda didiagnosa : %s", leaf);
 }
 
-void startAnalysis(Node *root) {
-    char answer[10];
-    printf("%s", root->question);
-    scanf("%s", answer);
-    if (strcmp(answer, "y") == 0) {
-        if (root->yes != NULL) startAnalysis(root->yes);
-//        else printf("Anda menderita penyakit jantung!\n");
-    } else if (strcmp(answer, "n") == 0) {
-        if (root->no != NULL) startAnalysis(root->no);
-        else printf("Anda sehat.\n");
-    } else {
-        printf("Input tidak valid.\n");
-        startAnalysis(root);
-    }
-}
+//void startAnalysis(Node *root) {
+//    char answer[10];
+//    printf("%s", root->question);
+//    scanf("%s", answer);
+//    if (strcmp(answer, "y") == 0) {
+//        if (root->yes != NULL) startAnalysis(root->yes);
+////        else printf("Anda menderita penyakit jantung!\n");
+//    } else if (strcmp(answer, "n") == 0) {
+//        if (root->no != NULL) startAnalysis(root->no);
+//        else printf("Anda sehat.\n");
+//    } else {
+//        printf("Input tidak valid.\n");
+//        startAnalysis(root);
+//    }
+//}
 
-void admin(){
-	printf("test admin");
-}
-
-void user(){
-	printf("test user");
+void startAnalysis(Node *root){
+	char answer;
+	do{
+		printf("%s", root->question);
+		scanf("%s", answer);
+		
+		if(strcmp(answer, "y") == 0){
+			if(root->yes != NULL){
+				root = root->yes;
+			}
+		}else if(strcmp(answer, "n") == 0){
+			if(root->no != NULL){
+				root = root->no;
+			}
+		}
+		
+	}while(root->yes != NULL || root->no != NULL);
+	
+	Print_Node(root->question);
 }
