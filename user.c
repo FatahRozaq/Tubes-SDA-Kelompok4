@@ -1,9 +1,111 @@
 #include "header.h"
 
+void gotoxy(int x, int y) {
+    COORD coord;
+     
+    coord.X = x;
+    coord.Y = y;
+     
+    SetConsoleCursorPosition(GetStdHandle(STD_OUTPUT_HANDLE), coord);
+}
+
+int getScreenWidth() {
+    CONSOLE_SCREEN_BUFFER_INFOEX _infoex = {0};
+    HANDLE handleOfConsoleOutput = NULL;
+
+    handleOfConsoleOutput = GetStdHandle(STD_OUTPUT_HANDLE);
+    _infoex.cbSize = sizeof(_infoex);
+    GetConsoleScreenBufferInfoEx(handleOfConsoleOutput, &_infoex);
+
+    return _infoex.srWindow.Right;
+}
+
+int getScreenHeight() {
+    CONSOLE_SCREEN_BUFFER_INFOEX _infoex = {0};
+    HANDLE handleOfConsoleOutput = NULL;
+
+    handleOfConsoleOutput = GetStdHandle(STD_OUTPUT_HANDLE);
+    _infoex.cbSize = sizeof(_infoex);
+    GetConsoleScreenBufferInfoEx(handleOfConsoleOutput, &_infoex);
+
+    return _infoex.srWindow.Bottom;
+}
 void menu() {
+	
+	HANDLE hConsole = GetStdHandle(STD_OUTPUT_HANDLE);
+	SetConsoleTextAttribute(hConsole, 229); // asalnya 125, lalu 229 - alternatifnya 245. Ada lagi 252 (merah) atau 249 (biru cerah).
+	
+    // Make the console windows become full-size
+	ShowWindow(GetConsoleWindow(), SW_MAXIMIZE);
+	
+	// Inisialisasi jendela cmd agar bersih
+    system("cls");
 	system("title Sicuker Gamestore"); //SetConsoleTitle("Sicuker Gamestore");
 	char inputMenu;
-	
+	int _X = getScreenWidth() / 2 - 31;
+	int _Y = getScreenHeight() / 2 - 9;
+
+	system("cls");
+	gotoxy(_X - 2, _Y);
+	printf("========================================================================\n");
+	gotoxy(_X + 25, _Y + 2);
+	printf("KALKULATOR STANDAR\n");
+	gotoxy(_X + 2, _Y+5);
+	printf("\n\n");
+	gotoxy(_X +2, _Y + 6);
+	printf("Ekspresi");
+	gotoxy(_X +20, _Y + 6);
+	printf("%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c\n",201,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,187);
+	gotoxy(_X +2, _Y + 7);
+	printf("Matematika");
+	gotoxy(_X +20, _Y + 7);
+	printf("%c                                      %c\n",186,186);
+	gotoxy(_X +2, _Y + 8);
+	printf("Yang Dihitung");
+	gotoxy(_X +20, _Y + 8);
+	printf("%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c\n",200,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,188);
+	gotoxy(_X +2, _Y + 9);
+	printf("\n");
+	gotoxy(_X +2, _Y + 10);
+	printf("Hasil");
+	gotoxy(_X +20, _Y + 10);
+	printf("%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c\n",201,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,187);
+	gotoxy(_X +2, _Y + 11);
+	printf("Perhitungan");
+	gotoxy(_X +20, _Y + 11);
+	printf("%c                                      %c\n",186,186);
+	gotoxy(_X +2, _Y + 12);
+	printf("Ekspresi");
+	gotoxy(_X +20, _Y + 12);
+	printf("%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c\n",200,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,188);
+	gotoxy(_X +2, _Y + 13);
+	printf("\n\n");
+	gotoxy(_X +2, _Y + 15);
+	printf("Silakan tekan huruf Q untuk kembali ke home menu : \n");
+	gotoxy(_X +2, _Y + 16);
+	printf("Atau tekan huruf apapun selain Q untuk kembali menggunakan kalkualtor standar");
+	gotoxy(_X - 2, _Y + 18);
+	printf("========================================================================\n");
+	gotoxy(_X + 22, _Y + 7);
+		
+	char infix[40];
+    char postfix[40];
+	char timeCalculation[64];
+	int checkPostfix = 0;
+	char inputUserStd = 48;
+		
+		scanf(" %[^\n]%*c", infix);
+		
+		if (checkPostfix == -1) {
+			printf("Ekspresi tidak valid");
+		}
+
+		gotoxy(_X + 21, _Y + 11);
+		printf(" %.2f", postfix);
+
+		gotoxy(_X + 53, _Y + 15);
+		scanf(" %c", &inputUserStd);
+		
 	menu:
 		headerLayout(" ", "\t", "Main Menu Page\t");
 		line(0);
@@ -11,7 +113,7 @@ void menu() {
 		lineText('o', "\t\t\t\t2. Medical Check Up\t\t\t\t");
 		lineText('o', "\t\t\t\t3. Settings\t\t\t\t\t");
 		lineText('o', "\t\t\t\t4. Credits\t\t\t\t\t");
-		lineText('o', "\t\t\t\t5. Data Transaction\t\t\t\t");
+		lineText('o', "\t\t\t\t5. History\t\t\t\t");
 		lineText('o', "\t\t\t\t6. Help\t\t\t\t\t\t");
 		lineText('o', "\t\t\t\t7. Exit\t\t\t\t\t\t");
 		line(0);

@@ -1,6 +1,6 @@
 #include "header.h"
 
-void loginRegisterUser() {
+void loginRegisterUser () {
 	char inputLoginRegister, inputRegister;
 	
 	loginRegisterUser:
@@ -63,7 +63,7 @@ void loginRegisterUser() {
 		}
 }
 
-void loginUser() {
+void loginUser () {
 	char str[1000]; char *pos; char *pas;
 	
 	file = fopen("user.txt", "r");
@@ -77,11 +77,6 @@ void loginUser() {
 	lineText('i', "Password");
 	scanf_s("%[^\n]s", &logReg.password);fflush(stdin);
 	
-//	if(strcmp(logReg.user, "admin.ac.id") == 0 && strcmp(logReg.userId, "221511069") == 0 && strcmp(logReg.password, "*Admin6969#") == 0){
-//		fclose(file);
-//		adminPage();
-//	}
-
 	file = fopen("user.txt", "r");
 	if (file == NULL){
 		fclose(file);
@@ -134,7 +129,7 @@ void loginUser() {
 		}
 }
 
-void registerUser() {
+void registerUser () {
 	char checkPassword = '0', confirmPassword[50], checkEmail[50];
 	char str[1000]; char *pos; char *pas;
 	
@@ -215,7 +210,7 @@ void registerUser() {
 	}
 }
 
-void profileUser() {
+void profileUser () {
 	char id[50];
 	
 	strcpy(id, logReg.userId);
@@ -233,7 +228,7 @@ void profileUser() {
 	fclose(file);
 }
 
-void updateProfileUser(){
+void updateProfileUser (){
 	User edit[50];
 	char id[50];
 	FILE *check;
@@ -301,7 +296,7 @@ void updateProfileUser(){
 		}
 
 	fclose(file);
-		file=fopen("user.txt","w");
+		file = fopen ("user.txt", "w");
 	for(i=0;i<index;i++){
 		fprintf(file,"%s_%s_%s_%s_%s\n",edit[i].user,edit[i].userId,edit[i].email,edit[i].password, edit[index].userAdmin);
 	}
@@ -311,7 +306,7 @@ void updateProfileUser(){
 	
 }
 
-void deletesProfileUser(){
+void deletesProfileUser (){
 	
 	User deletes[50];
 	char id[50];
@@ -319,7 +314,7 @@ void deletesProfileUser(){
 	
 	strcpy(id, logReg.userId);
 
-	file=fopen("user.txt","r");
+	file=fopen("user.txt", "r");
 	index=0;
 	while (!feof(file)){
 		fscanf(file,"%[^_]_%[^_]_%[^_]_%[^_]_%[^\n]\n",&deletes[index].user,&deletes[index].userId,&deletes[index].email,&deletes[index].password,deletes[index].userAdmin);
@@ -330,7 +325,7 @@ void deletesProfileUser(){
 	}
 		
 	fclose(file);
-		file=fopen("user.txt","w");
+		file=fopen("user.txt", "w");
 	for(i=0;i<index;i++){
 		fprintf(file,"%s_%s_%s_%s_s\n",deletes[i].user,deletes[i].userId,deletes[i].email,deletes[i].password,deletes[index].userAdmin);
 	}
@@ -339,7 +334,7 @@ void deletesProfileUser(){
 	loginRegisterUser();
 }
 
-void helpLoginRegister(){
+void helpLoginRegister (){
 	headerLayout("", "\t", "Help Page\t");
 	line(3);
 	lineText('o', "\t\t\t\tREGISTER\t\t\t\t\t");
@@ -352,13 +347,9 @@ void helpLoginRegister(){
 	lineText('o', "3. ID can't be same to other user ID\t\t\t\t\t\t");
 	line(3);
 	getch();
-	loginRegisterUser();
+	loginRegisterUser ();
 }
 
-void errorMessageEmail(){
+void errorMessageEmail (){
 	lineText('a', "\t\tMust contain '@', press any key to try again...\t\t\t");
 }
-
-
-//////////
-

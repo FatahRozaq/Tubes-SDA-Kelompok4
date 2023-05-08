@@ -43,10 +43,20 @@ void startAnalysis(Node *root) {
     }
 }
 
-void admin(){
-	printf("test admin");
+void medicalCheckUpResults () {
+	//hasil cek kesehatan berdasarkan hasil dari startAnalysis
+	
+	//data hasil cek kesehatan yang telah diinputkan pengecek
+	
+	//rujukan yang didapat sesuai dengan hasil cek kesehatan
 }
 
-void user(){
-	printf("test user");
+void medicalCheckUpRecommendation () {
+	//rekomendasi hal-hal yang perlu dilakukan oleh pengecek
+}
+
+void medicalCheckUpDisclaimer () {
+	//disclaimer
+	
+	printf ("This medical check up tool is not a substitute for a medical consultation. Always consult your doctor before deciding on treatment for an illness. This program does not provide medical advice, diagnosis, or treatment.");
 }
