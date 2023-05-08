@@ -6,6 +6,7 @@
 #include <stdbool.h>
 #include <time.h>
 #include <stdbool.h>
+#include <locale.h>
 
 typedef struct{
 	char 	userId[50],
@@ -31,7 +32,7 @@ void headerLayout(char leftHeader[50], char leftHeader2[50], char title[50]);
 void errorMessage();
 void inputType(char *typeHere);
 
-//loginRegisterUser.c
+//loginRegister.c
 void loginRegisterUser();
 void loginUser();
 void registerUser();
@@ -43,21 +44,25 @@ void errorMessageEmail();
 
 //admin.c
 void adminPage ();
-void userData();
-void updateAdmin();
-void deleteAdmin();
+void userData ();
+void updateAdmin ();
+void deleteAdmin ();
 
-//mainMenu
+//user.c
 void menu ();
+void medicalCheckUp ();
 void profile ();
 void exitProgram ();
+void gotoxy(int x, int y);
+int getScreenWidth();
+int getScreenHeight();
 
-//tree
-boolean isEmpty(address root);
-Node* createNode(char question[]);
-void Delete_Tree(Node *root);
-void Print_Node(char leaf[]);
-void startAnalysis(Node *root);
-
-void admin();
-void user();
+//body.c
+boolean isEmpty (address root);
+Node* createNode (char question[]);
+void Delete_Tree (Node *root);
+void Print_Node (char leaf[]);
+void startAnalysis (Node *root);
+void medicalCheckUpResults ();
+void medicalCheckUpRecommendation ();
+void medicalCheckUpDisclaimer ();
