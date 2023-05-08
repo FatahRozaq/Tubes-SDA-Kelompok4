@@ -26,7 +26,35 @@ void Delete_Tree(Node *root) {
 void Print_Node(char leaf[]){
 	printf("Anda didiagnosa : %s", leaf);
 }
+// Mencetak garis penghubung antara node dalam Binary Tree
+void printLine(int space) {
+	int i;
+    for (i = 0; i < space; i++) {
+        printf(" ");
+    }
+    printf("\n");
+}
 
+// Menampilkan Binary Tree dengan notasi grafik
+void printTree(address node, int space) {
+	int i;
+    if (node == NULL) return;
+
+    space += 10;
+
+    printTree(node->no, space);
+    printf("\n");
+
+    for (i = 10; i < space; i++) printf(" ");
+
+    printf("%s", node->question);
+
+    if (node->yes != NULL && node->no != NULL) {
+        printLine(space);
+    }
+
+    printTree(node->yes, space);
+}
 void startAnalysis(Node *root) {
     char answer[10];
     Node *current = root;
