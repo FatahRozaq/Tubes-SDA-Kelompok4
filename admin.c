@@ -7,7 +7,7 @@ void adminPage(){
 	line(0);
 	lineText('o', "\t\t\t\t1. Admin Profile\t\t\t\t");
 	lineText('o', "\t\t\t\t2. User Data\t\t\t\t\t");
-	lineText('o', "\t\t\t\t3. Games Data\t\t\t\t\t");
+	lineText('o', "\t\t\t\t3. Disease Data\t\t\t\t\t");
 	lineText('o', "\t\t\t\t4. Settings\t\t\t\t\t");
 	lineText('o', "\t\t\t\t5. Data Transaction\t\t\t\t");
 	lineText('o', "\t\t\t\t6. Exit\t\t\t\t\t\t");

@@ -49,6 +49,8 @@ void deleteAdmin();
 
 //mainMenu
 void menu ();
+void profile ();
+void exitProgram ();
 
 //tree
 boolean isEmpty(address root);

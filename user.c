@@ -1,6 +1,63 @@
 #include "header.h"
 
-void menu () {
+void menu() {
+	system("title Sicuker Gamestore"); //SetConsoleTitle("Sicuker Gamestore");
+	char inputMenu;
+	
+	menu:
+		headerLayout(" ", "\t", "Main Menu Page\t");
+		line(0);
+		lineText('o', "\t\t\t\t1. Profile\t\t\t\t\t");
+		lineText('o', "\t\t\t\t2. Games\t\t\t\t\t");
+		lineText('o', "\t\t\t\t3. Settings\t\t\t\t\t");
+		lineText('o', "\t\t\t\t4. Credits\t\t\t\t\t");
+		lineText('o', "\t\t\t\t5. Data Transaction\t\t\t\t");
+		lineText('o', "\t\t\t\t6. Help\t\t\t\t\t\t");
+		lineText('o', "\t\t\t\t7. Exit\t\t\t\t\t\t");
+		line(0);
+		inputType(&inputMenu);
+		
+		switch(inputMenu) {
+			case '0':
+				exitProgram();
+				break;
+				
+			case '1':
+				profile();
+				break;
+				
+//			case '2':
+//				games();
+//				break;
+				
+//			case '3':
+//				settings();
+//				break;
+				
+//			case '4':
+//				credits();
+//				break;
+				
+//			case '5':
+//				dataTransaction();
+//				break;
+				
+//			case '6':
+//				userHelp();
+//				break;
+				
+			case '7':
+				exitProgram();
+				break;	
+				
+			default:
+				errorMessage();
+				goto menu;
+				break;
+		}	
+		
+		
+		
 	printf ("Berhasil login\n"); getch ();
 	
 	Node *root = createNode("Apakah Anda mengalami sakit dada? (y/n) ");
