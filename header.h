@@ -31,6 +31,7 @@ void lineText(char textType, char lineName[50]);
 void headerLayout(char leftHeader[50], char leftHeader2[50], char title[50]);
 void errorMessage();
 void inputType(char *typeHere);
+void layoutXY(int layoutType);
 
 //loginRegister.c
 void loginRegisterUser();
