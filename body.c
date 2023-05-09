@@ -16,35 +16,40 @@ Node* createNode(char question[]) {
     return newNode;
 }
 
-void Delete_Tree(Node *root) {
+void deleteTree(Node *root) {
     if (root == NULL) return;
-    Delete_Tree(root->yes);
-    Delete_Tree(root->no);
+    deleteTree(root->yes);
+    deleteTree(root->no);
     free(root);
 }
 
-void Print_Node(char leaf[]){
+void printNode(char leaf[]){
 	printf("Anda didiagnosa : %s", leaf);
 }
 
-void startAnalysis(Node *root) {
+char* startAnalysis(Node *root) {
     char answer[10];
     Node *current = root;
     while (current != NULL) {
-        printf("%s", current->question);
-        scanf("%s", answer);
-        if (strcmp(answer, "y") == 0) {
-            current = current->yes;
-        } 
-		else if (strcmp(answer, "n") == 0) {
-            current = current->no;
-            if (current == NULL) {
-                printf("Anda sehat.\n");
-            }
-        } 
-		else {
-            printf("Maaf, Input yang anda lakukan tidak valid.\n");
-        }
+    	if(current->yes != NULL || current->yes != NULL){
+    		printf("%s", current->question);
+	        scanf("%s", answer);
+	        if (strcmp(answer, "y") == 0) {
+				current = current->yes;
+	        } 
+			else if (strcmp(answer, "n") == 0) {
+	            current = current->no;
+	            if (current == NULL) {
+	                return("Anda sehat.\n");
+	            }
+	        } 
+			else {
+	            printf("Maaf, Input yang anda lakukan tidak valid.\n");
+	        }
+		}else{
+			return(current->question);
+		}
+        
     }
     
 }

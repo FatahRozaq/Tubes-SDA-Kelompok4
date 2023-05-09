@@ -60,9 +60,9 @@ int getScreenHeight();
 //body.c
 boolean isEmpty (address root);
 Node* createNode (char question[]);
-void Delete_Tree (Node *root);
-void Print_Node (char leaf[]);
-void startAnalysis (Node *root);
+void deleteTree (Node *root);
+void printNode (char leaf[]);
+char* startAnalysis (Node *root);
 void medicalCheckUpResults ();
 void medicalCheckUpRecommendation ();
 void medicalCheckUpDisclaimer ();
