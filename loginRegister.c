@@ -196,7 +196,7 @@ void registerUser () {
 	system("cls");
 	layoutXY (2);
 	gotoxy(_X + 15, _Y + 27);
-	printf("If you are an admin? Press a");
+	printf("If you are an admin, Press a");
     char inputRegisterAdmin = getch ();
 	if (inputRegisterAdmin == 'a') {
 		strcpy(logReg.userAdmin, "1");
