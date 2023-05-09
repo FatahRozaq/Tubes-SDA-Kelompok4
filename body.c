@@ -16,32 +16,76 @@ Node* createNode(char question[]) {
     return newNode;
 }
 
-void Delete_Tree(Node *root) {
+void deleteTree(Node *root) {
     if (root == NULL) return;
-    Delete_Tree(root->yes);
-    Delete_Tree(root->no);
+    deleteTree(root->yes);
+    deleteTree(root->no);
     free(root);
 }
 
-void Print_Node(char leaf[]){
+void printNode(char leaf[]){
 	printf("Anda didiagnosa : %s", leaf);
 }
-
-void startAnalysis(Node *root) {
-    char answer[10];
-    printf("%s", root->question);
-    scanf("%s", answer);
-    if (strcmp(answer, "y") == 0) {
-        if (root->yes != NULL) startAnalysis(root->yes);
-//        else printf("Anda menderita penyakit jantung!\n");
-    } else if (strcmp(answer, "n") == 0) {
-        if (root->no != NULL) startAnalysis(root->no);
-        else printf("Anda sehat.\n");
-    } else {
-        printf("Input tidak valid.\n");
-        startAnalysis(root);
+// Mencetak garis penghubung antara node dalam Binary Tree
+void printLine(int space) {
+	int i;
+    for (i = 0; i < space; i++) {
+        printf(" ");
     }
+    printf("\n");
 }
+
+// Menampilkan Binary Tree dengan notasi grafik
+void printTree(address node, int space) {
+	int i;
+    if (node == NULL) return;
+
+    space += 10;
+
+    printTree(node->no, space);
+    printf("\n");
+}
+
+//char* startAnalysis(Node *root) {
+//
+//    for (i = 10; i < space; i++) printf(" ");
+//
+//    printf("%s", node->question);
+//
+//    if (node->yes != NULL && node->no != NULL) {
+//        printLine(space);
+//    }
+//
+//    printTree(node->yes, space);
+//}
+
+char* startAnalysis(Node *root) {
+    char answer[10];
+    Node *current = root;
+    while (current != NULL) {
+    	if(current->yes != NULL || current->yes != NULL){
+    		printf("%s", current->question);
+	        scanf("%s", answer);
+	        if (strcmp(answer, "y") == 0) {
+				current = current->yes;
+	        } 
+			else if (strcmp(answer, "n") == 0) {
+	            current = current->no;
+	            if (current == NULL) {
+	                return("Anda sehat.\n");
+	            }
+	        } 
+			else {
+	            printf("Maaf, Input yang anda lakukan tidak valid.\n");
+	        }
+		}else{
+			return(current->question);
+		}
+        
+    }
+    
+}
+
 
 void medicalCheckUpResults () {
 	//hasil cek kesehatan berdasarkan hasil dari startAnalysis
@@ -58,5 +102,6 @@ void medicalCheckUpRecommendation () {
 void medicalCheckUpDisclaimer () {
 	//disclaimer
 	
-	printf ("This medical check up tool is not a substitute for a medical consultation. Always consult your doctor before deciding on treatment for an illness. This program does not provide medical advice, diagnosis, or treatment.");
+	printf("This medical check up tool is not a substitute for a medical consultation. Always consult your doctor before deciding on treatment for an illness. This program does not provide medical advice, diagnosis, or treatment.");
+
 }

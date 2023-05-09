@@ -88,6 +88,7 @@ void menu() {
 }
 
 void medicalCheckUp () {
+	char* diseaseResult;
 	
 	Node *root = createNode("Apakah Anda mengalami sakit dada? (y/n) ");
     root->yes = createNode("Apakah sakit dada berlangsung lebih dari 5 menit? (y/n) ");
@@ -100,7 +101,9 @@ void medicalCheckUp () {
     root->no->no = createNode("Apakah Anda merasa lelah? (y/n) ");
     root->no->no->yes = createNode("Anda menderita penyakit jantung bawaan.");
  
-    startAnalysis(root);
+    diseaseResult = startAnalysis(root);
+    
+    printf("Penyakit anda : %s", diseaseResult);
 }
 
 void profile() {
