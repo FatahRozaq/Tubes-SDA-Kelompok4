@@ -75,11 +75,11 @@ void loginUser () {
     system("cls");
 	system("title Sicuker Gamestore"); //SetConsoleTitle("Sicuker Gamestore");
 	
-	gotoxy(_X + 16, _Y + 21);
-	printf("Don't have an account? Click r to register");
+	gotoxy(_X + 10, _Y + 19);
+	printf("Don't have an account? Press r to register");
 	layoutXY (1);
 	
-	gotoxy(_X + 58, _Y + 21);
+	gotoxy(_X + 52, _Y + 19);
     char inputLogin = getch ();
 	if (inputLogin == 'r') {
 		registerUser ();
@@ -126,7 +126,7 @@ void loginUser () {
 	file = fopen("user.txt", "r");
 	if (file == NULL){
 		fclose(file);
-		lineText('a', "\t\t\t\tUser Not Found!\t\t\t\t\t");
+		lineText('b', "\t\t\t\tUser Not Found!\t\t\t\t\t");
         file = fopen("user.txt","a");
         fclose(file);
         file = fopen("user.txt","r");
@@ -149,19 +149,8 @@ void loginUser () {
 		}
 	}
 	fclose(file);
-	gotoxy(_X - 14, _Y - 8);
-	line(3);
-	gotoxy(_X - 14, _Y - 7);
-	line(0);
-	gotoxy(_X - 14, _Y - 6);
-	printf ("|\t\t\t\t\tThe account doesn't exist!   \t\t\t\t|");
-	gotoxy(_X - 14, _Y - 5);
-	line(0);
-	gotoxy(_X - 14, _Y - 4);
-	line(3);
-	getch();
-//	lineText('a', "\t\t\tThe account doesn't exist!\t\t\t\t");
-	return loginRegisterUser();
+	lineText('b', "\t\t\tThe account doesn't exist!\t\t\t\t");
+	return loginUser ();
 	
 	coba:
 		file = fopen("user.txt","r");
@@ -170,18 +159,7 @@ void loginUser () {
 	        pas = strstr(str, logReg.password);
 			if (pos != NULL && pas != NULL){
 				fclose(file);
-				gotoxy(_X - 14, _Y - 8);
-				line(3);
-				gotoxy(_X - 14, _Y - 7);
-				line(0);
-				gotoxy(_X - 14, _Y - 6);
-				printf ("|\t\t\t\t\tSuccessfully Logged in!\t\t\t\t|");
-				gotoxy(_X - 14, _Y - 5);
-				line(0);
-				gotoxy(_X - 14, _Y - 4);
-				line(3);
-				getch();
-//				lineText('a', "\t\t\t\tSuccessfully Logged in!\t\t\t\t");
+				lineText('b', "\t\t\t\tSuccessfully Logged in!\t\t\t\t");
 				if(strcmp(dataUser.userAdmin, "1") == 0) {
 					adminPage();
 				}
@@ -192,94 +170,52 @@ void loginUser () {
 		}
 		if (pos == NULL && pas == NULL) {
 			fclose(file);
-			lineText('a', "\t\t\t\tUser Not Found!\t\t\t\t\t");
-			loginRegisterUser();
+			lineText('b', "\t\t\t\tUser Not Found!\t\t\t\t\t");
+			loginUser ();
 		}
 }
 
 void registerUser () {
-	char checkPassword = '0', confirmPassword[50], checkEmail[50];
+	char checkPassword = '0', confirmPassword[20], checkEmail[50];
 	char str[1000]; char *pos; char *pas;
-	
-	HANDLE hConsole = GetStdHandle(STD_OUTPUT_HANDLE);
-	SetConsoleTextAttribute(hConsole, 229); // asalnya 125, lalu 229 - alternatifnya 245. Ada lagi 252 (merah) atau 249 (biru cerah).
-	
-    // Make the console windows become full-size
-	ShowWindow(GetConsoleWindow(), SW_MAXIMIZE);
-	
-	// Inisialisasi jendela cmd agar bersih
-    system("cls");
 	int _X = getScreenWidth() / 2 - 31;
 	int _Y = getScreenHeight() / 2 - 16;
 
 	system("cls");
-	gotoxy(_X - 2, _Y);
-	printf("========================================================================\n");
-	gotoxy(_X + 25, _Y + 2);
-	printf("Register Page\n");
-	gotoxy(_X + 2, _Y+5);
-	printf("\n\n");
-	gotoxy(_X +20, _Y + 6);
-	printf("%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c\n",201,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,187);
-	gotoxy(_X +4, _Y + 7);
-	printf("Username");
-	gotoxy(_X +20, _Y + 7);
-	printf("%c                                      %c\n",186,186);
-	gotoxy(_X +20, _Y + 8);
-	printf("%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c\n",200,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,188);
-	gotoxy(_X +2, _Y + 9);
-	printf("\n");
-	gotoxy(_X +20, _Y + 10);
-	printf("%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c\n",201,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,187);
-	gotoxy(_X +4, _Y + 11);
-	printf("ID");
-	gotoxy(_X +20, _Y + 11);
-	printf("%c                                      %c\n",186,186);
-	gotoxy(_X +20, _Y + 12);
-	printf("%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c\n",200,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,188);
-	gotoxy(_X +2, _Y + 13);
-	printf("\n");
-	gotoxy(_X +20, _Y + 14);
-	printf("%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c\n",201,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,187);
-	gotoxy(_X +4, _Y + 15);
-	printf("Email");
-	gotoxy(_X +20, _Y + 15);
-	printf("%c                                      %c\n",186,186);
-	gotoxy(_X +20, _Y + 16);
-	printf("%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c\n",200,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,188);
-	gotoxy(_X +2, _Y + 17);
-	printf("\n");
-	gotoxy(_X +20, _Y + 18);
-	printf("%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c\n",201,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,187);
-	gotoxy(_X +4, _Y + 19);
-	printf("Password");
-	gotoxy(_X +20, _Y + 19);
-	printf("%c                                      %c\n",186,186);
-	gotoxy(_X +20, _Y + 20);
-	printf("%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c\n",200,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,188);
-	gotoxy(_X +2, _Y + 21);
-	printf("\n");
-	gotoxy(_X +20, _Y + 22);
-	printf("%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c\n",201,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,187);
-	gotoxy(_X +4, _Y + 23);
-	printf("Re-password");
-	gotoxy(_X +20, _Y + 23);
-	printf("%c                                      %c\n",186,186);
-	gotoxy(_X +20, _Y + 24);
-	printf("%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c\n",200,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,188);
-	gotoxy(_X +2, _Y + 25);
-	printf("\n");
 	
+	gotoxy(_X + 10, _Y + 27);
+	printf("Already have an account? Press l to login");
+	layoutXY (2);
 	
+	gotoxy(_X + 51, _Y + 27);
+    char inputRegister = getch ();
+	if (inputRegister == 'l') {
+		loginUser ();
+	}
 	
+	system("cls");
+	layoutXY (2);
+	gotoxy(_X + 15, _Y + 27);
+	printf("If you are an admin? Press a");
+    char inputRegisterAdmin = getch ();
+	if (inputRegisterAdmin == 'a') {
+		strcpy(logReg.userAdmin, "1");
+	}
+	else {	
+		strcpy(logReg.userAdmin, "0");
+	}
+ 	
 	registerUser:
+		system ("cls");
+		layoutXY (2);
+	
 		file=fopen("user.txt", "r+");
 //		line(3);
 //		lineText('i', "Username");
 		gotoxy(_X +22, _Y + 7);
 		scanf("%[^\n]s", &logReg.user);fflush(stdin);
 		if (strlen(logReg.user) > 13 ||  strlen(logReg.user) < 6) {
-			errorMessage();
+			lineText('b', "\t\t\tUsername consists of 6 - 13 characters!\t\t\t");
 			goto registerUser;
 		}
 		
@@ -288,7 +224,11 @@ void registerUser () {
 		gotoxy(_X +22, _Y + 11);
 		scanf("%[^\n]s", &logReg.userId);fflush(stdin);
 		if (strlen(logReg.userId) > 13 ||  strlen(logReg.userId) < 6) {
-			errorMessage();
+			lineText('b', "\t\t\tUser ID consists of 6 - 13 characters!\t\t\t");
+			system ("cls");	
+			layoutXY (2);
+			gotoxy(_X +22, _Y + 7);
+			printf ("%s", logReg.user);
 			goto regUserId;
 		}
 		
@@ -297,8 +237,8 @@ void registerUser () {
 	while (!feof(file)){
 		fscanf(file,"%[^_]_%[^_]_%[^_]_%[^_]_%[^\n]\n",&dataUser.user, &dataUser.userId, dataUser.email, dataUser.password, dataUser.userAdmin);fflush(stdin);
 		if ((strcmp(check.user, dataUser.user) == 0 && strcmp(check.user, dataUser.userId) != 0 && strcmp(check.user, dataUser.email) != 0 && strcmp(check.user, dataUser.password) != 0) || (strcmp(check.userId, dataUser.user) != 0 && strcmp(check.userId, dataUser.userId) == 0 && strcmp(check.userId, dataUser.email) != 0 && strcmp(check.userId, dataUser.password) != 0)) {
-			lineText('a', "\t\t\tThe account is already exist!\t\t\t\t");
-			return loginRegisterUser();
+			lineText('b', "\t\t\tThe account is already exist!\t\t\t\t");
+			registerUser();
 		}
 	}
 		
@@ -307,37 +247,105 @@ void registerUser () {
 		gotoxy(_X +22, _Y + 15);
 		scanf("%[^\n]s", &checkEmail);fflush(stdin);
 		if (strlen(checkEmail) > 13 ||  strlen(checkEmail) < 6) {
-			errorMessage();
+			lineText('b', "\t\t\tEmail consists of 6 - 13 characters!\t\t\t");
+			system ("cls");	
+			layoutXY (2);
+			gotoxy(_X +22, _Y + 7);
+			printf ("%s", logReg.user);
+			gotoxy(_X +22, _Y + 11);
+			printf ("%s", logReg.userId);
 			goto regEmail;
 		}
 		
 		if(strchr(checkEmail, '@' ) == NULL){
-				errorMessageEmail();
+				lineText('b', "\t\t\t\tEmail must contain '@'\t\t\t\t");
+				system ("cls");	
+				layoutXY (2);
+				gotoxy(_X +22, _Y + 7);
+				printf ("%s", logReg.user);
+				gotoxy(_X +22, _Y + 11);
+				printf ("%s", logReg.userId);
 				goto regEmail;
 		}
-		
 		strcpy(logReg.email, checkEmail);
 		
 	while (checkPassword == '0') {
 		regPassword:
 //			lineText('i', "Password");
 			gotoxy(_X +22, _Y + 19);
-			scanf("%[^\n]s", &logReg.password);fflush(stdin);
+			
+			char password[20];
+		    int i = 0;
+		    char ch;
+		
+			while (1) {
+		        ch = getch();
+		        if (ch == '\r') {  // if Enter key is pressed
+			        password[i] = '\0';
+			        break;
+		        } 
+				else if (ch == '\b' && i > 0) {  // if Backspace key is pressed
+			        i--;
+			        printf("\b \b");
+		        }
+				else if (ch != '\b') {
+			        password[i] = ch;
+			        i++;
+			        printf("*");
+			    }
+			}
+		    strcpy (logReg.password, password);
+		    
+//			scanf("%[^\n]s", &logReg.password);fflush(stdin);
 			if (strlen(logReg.password) > 13 ||  strlen(logReg.password) < 6) {
-				errorMessage();
+				lineText('b', "\t\t\tPassword consists of 6 - 13 characters!\t\t\t");
+				system ("cls");	
+				layoutXY (2);
+				gotoxy(_X +22, _Y + 7);
+				printf ("%s", logReg.user);
+				gotoxy(_X +22, _Y + 11);
+				printf ("%s", logReg.userId);
+				gotoxy(_X +22, _Y + 15);
+				printf ("%s", logReg.email);
 				goto regPassword;
 			}
 	
 //			lineText('i', "Re-Password");
 			gotoxy(_X +22, _Y + 23);
-			scanf("%[^\n]s", &confirmPassword);fflush(stdin);
+			i = 0;
+			while (1) {
+		        ch = getch();
+		        if (ch == '\r') {  // if Enter key is pressed
+			        confirmPassword[i] = '\0';
+			        break;
+		        } 
+				else if (ch == '\b' && i > 0) {  // if Backspace key is pressed
+			        i--;
+			        printf("\b \b");
+		        }
+				else if (ch != '\b') {
+			        confirmPassword[i] = ch;
+			        i++;
+			        printf("*");
+			    }
+			}
+		    
+//			scanf("%[^\n]s", &confirmPassword);fflush(stdin);
 			if (strcmp(logReg.password, confirmPassword) == 0) {
 				checkPassword = '1';
-				lineText('a', "\t\t\tSuccessfully Registered in!\t\t\t\t");
+				lineText('b', "\t\t\tSuccessfully Registered in!\t\t\t\t");
 			}
 			else
 			{
-				errorMessage();
+				lineText('b', "\t\t\t\tPasswords are not match\t\t\t\t");
+				system ("cls");	
+				layoutXY (2);
+				gotoxy(_X +22, _Y + 7);
+				printf ("%s", logReg.user);
+				gotoxy(_X +22, _Y + 11);
+				printf ("%s", logReg.userId);
+				gotoxy(_X +22, _Y + 15);
+				printf ("%s", logReg.email);
 				goto regPassword;
 			}
 	}
@@ -345,16 +353,9 @@ void registerUser () {
 	gotoxy(_X +15, _Y + 26);
 	printf("%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c\n",201,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,187);
 	gotoxy(_X +15, _Y + 27);
-	printf("%c       Click c to continue       %c\n",186,186);
+	printf("%c    Click any key to continue    %c\n",186,186);
 	gotoxy(_X +15, _Y + 28);
 	printf("%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c\n",200,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,188);
-	gotoxy(_X +15, _Y + 29);
-	printf("Don't have an account? Click l to login");
-	
-    char inputLogin = getch ();
-	if (inputLogin == 'l') {
-		loginUser ();
-	}
 	
     fprintf(file, "%s_%s_%s_%s_%s\n", logReg.user, logReg.userId, logReg.email, logReg.password, logReg.userAdmin);
     fclose(file);

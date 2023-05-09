@@ -8,10 +8,9 @@ void adminPage(){
 	lineText('o', "\t\t\t\t1. Admin Profile\t\t\t\t");
 	lineText('o', "\t\t\t\t2. User Data\t\t\t\t\t");
 	lineText('o', "\t\t\t\t3. Disease Data\t\t\t\t\t");
-	lineText('o', "\t\t\t\t4. Delete Disease Data\t\t\t\t\t");
-	lineText('o', "\t\t\t\t5. Settings\t\t\t\t\t");
-	lineText('o', "\t\t\t\t6. Data Transaction\t\t\t\t");
-	lineText('o', "\t\t\t\t7. Exit\t\t\t\t\t\t");
+	lineText('o', "\t\t\t\t4. Settings\t\t\t\t\t");
+	lineText('o', "\t\t\t\t5. Data Transaction\t\t\t\t");
+	lineText('o', "\t\t\t\t6. Exit\t\t\t\t\t\t");
 	line(0);
 	inputType(&inputAdminPage);
 	line(0);
@@ -41,7 +40,7 @@ void adminPage(){
 //			dataTransaction();
 //			break;
 //			
-		case '7':
+		case '6':
 			exitProgram();
 			break;
 			
@@ -98,10 +97,10 @@ void userData(){
 			case '3':
 				deleteAdmin();
 				break;
-			
+				
 			case '4':
 				adminPage();
-				break;	
+				break;
 				
 			default:
 				errorMessage();

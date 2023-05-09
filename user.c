@@ -141,7 +141,7 @@ void profile() {
 				
 			case '3':
 				strcpy(logReg.userId, "");
-				loginRegisterUser();
+				printBanner ();
 				break;
 				
 			case '4':

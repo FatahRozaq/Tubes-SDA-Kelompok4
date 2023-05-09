@@ -26,6 +26,7 @@ void deleteTree(Node *root) {
 void printNode(char leaf[]){
 	printf("Anda didiagnosa : %s", leaf);
 }
+
 // Mencetak garis penghubung antara node dalam Binary Tree
 void printLine(int space) {
 	int i;
