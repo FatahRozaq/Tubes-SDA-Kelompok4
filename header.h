@@ -7,6 +7,20 @@
 #include <time.h>
 #include <stdbool.h>
 #include <locale.h>
+#define Nil NULL
+#define info(P) (P)->info
+#define next(P) (P)->next
+#define prev(P) (P)->prev
+typedef char* infotype;			// variable bentukan bernama infotype dengan tipe char*
+typedef struct tElmtlist *alamat; // variable pointer yang akan menunjuk ke alamat yang nilainya bernilai tElmtlist
+
+typedef struct tElmtlist
+{
+	alamat prev;
+	infotype info;
+	alamat next;
+	
+} ElmtList;
 
 typedef struct{
 	char 	userId[50],
@@ -28,6 +42,9 @@ User dataUser, logReg, check;
 //layout.c
 void line(int lineType);
 void lineText(char textType, char lineName[50]);
+void layoutXY(int layoutType);
+void printBanner ();
+void printASCIIforBanner(char ch);
 void headerLayout(char leftHeader[50], char leftHeader2[50], char title[50]);
 void errorMessage();
 void inputType(char *typeHere);

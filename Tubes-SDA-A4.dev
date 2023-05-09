@@ -29,7 +29,11 @@ IncludeVersionInfo=0
 SupportXPThemes=0
 CompilerSet=0
 CompilerSettings=0000000000000000000000000
+<<<<<<< HEAD
 UnitCount=8
+=======
+UnitCount=7
+>>>>>>> 30ab71c4590f66aace66b60d87d3dd05b4390b4d
 
 [VersionInfo]
 Major=1
@@ -70,8 +74,13 @@ Priority=1000
 OverrideBuildCmd=0
 BuildCmd=
 
+<<<<<<< HEAD
 [Unit3]
 FileName=boolean.h
+=======
+[Unit4]
+FileName=layout.c
+>>>>>>> 30ab71c4590f66aace66b60d87d3dd05b4390b4d
 CompileCpp=0
 Folder=
 Compile=1
@@ -80,8 +89,13 @@ Priority=1000
 OverrideBuildCmd=0
 BuildCmd=
 
+<<<<<<< HEAD
 [Unit4]
 FileName=header.h
+=======
+[Unit5]
+FileName=loginRegister.c
+>>>>>>> 30ab71c4590f66aace66b60d87d3dd05b4390b4d
 CompileCpp=0
 Folder=
 Compile=1
@@ -90,8 +104,13 @@ Priority=1000
 OverrideBuildCmd=0
 BuildCmd=
 
+<<<<<<< HEAD
 [Unit5]
 FileName=layout.c
+=======
+[Unit6]
+FileName=main.c
+>>>>>>> 30ab71c4590f66aace66b60d87d3dd05b4390b4d
 CompileCpp=0
 Folder=
 Compile=1
@@ -100,8 +119,13 @@ Priority=1000
 OverrideBuildCmd=0
 BuildCmd=
 
+<<<<<<< HEAD
 [Unit6]
 FileName=loginRegister.c
+=======
+[Unit7]
+FileName=user.c
+>>>>>>> 30ab71c4590f66aace66b60d87d3dd05b4390b4d
 CompileCpp=0
 Folder=
 Compile=1
@@ -110,8 +134,13 @@ Priority=1000
 OverrideBuildCmd=0
 BuildCmd=
 
+<<<<<<< HEAD
 [Unit7]
 FileName=main.c
+=======
+[Unit8]
+FileName=user.c
+>>>>>>> 30ab71c4590f66aace66b60d87d3dd05b4390b4d
 CompileCpp=0
 Folder=
 Compile=1
@@ -120,8 +149,13 @@ Priority=1000
 OverrideBuildCmd=0
 BuildCmd=
 
+<<<<<<< HEAD
 [Unit8]
 FileName=user.c
+=======
+[Unit3]
+FileName=header.h
+>>>>>>> 30ab71c4590f66aace66b60d87d3dd05b4390b4d
 CompileCpp=0
 Folder=
 Compile=1
