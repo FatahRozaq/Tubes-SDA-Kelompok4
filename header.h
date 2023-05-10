@@ -95,9 +95,12 @@ void medicalCheckUpDisclaimer ();
 
 //karakterPenyakit
 void karakteristikPenyakit();
-void saveList(addressKarakterPenyakit head, char* filename);
-addressKarakterPenyakit findNode(addressKarakterPenyakit head, int id);
-void deleteNode(addressKarakterPenyakit* headRef, int id);
-void editNode(addressKarakterPenyakit head, int id);
+addressKarakterPenyakit createNodePenyakit(int id, char* namaPenyakit, char* karakteristik);
+void insertNode(addressKarakterPenyakit *head, int id, char* namaPenyakit, char* karakteristik);
+void deleteNode(addressKarakterPenyakit *head, int id);
+void updateNode(addressKarakterPenyakit *head, int id, char* namaPenyakit, char* karakteristik);
+void displayList(addressKarakterPenyakit head);
+void saveListToFile(addressKarakterPenyakit head, char* filename);
+void loadListFromFile(addressKarakterPenyakit *head, char* filename);
 
 
