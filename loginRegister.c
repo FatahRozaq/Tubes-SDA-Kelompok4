@@ -1,68 +1,5 @@
 #include "header.h"
 
-void loginRegisterUser () {
-	char inputLoginRegister, inputRegister;
-	
-	loginRegisterUser:
-//		strcpy(logReg.userId, "");
-		headerLayout(" ", "\t", "Login Register Page");
-		line(0);
-		lineText('o', "\t\t\t\t1. Login\t\t\t\t\t");
-		lineText('o', "\t\t\t\t2. Register\t\t\t\t\t");
-		lineText('o', "\t\t\t\t3. Help\t\t\t\t\t\t");
-		lineText('o', "\t\t\t\t4. Exit\t\t\t\t\t\t");
-		line(0);
-		inputType(&inputLoginRegister);
-	
-		switch (inputLoginRegister) {
-//		case '0':
-//			exitProgram();
-//			break;
-			
-		case '1':
-			loginUser();
-			break;
-			
-		case '2':
-			line(0);
-			lineText('o', "\t\t\t\t1. User\t\t\t\t\t\t");
-			lineText('o', "\t\t\t\t2. Admin\t\t\t\t\t");
-			line(0);
-			inputType(&inputRegister);
-			
-			switch(inputRegister) {
-				case '1':
-					strcpy(logReg.userAdmin, "0");
-					registerUser();
-					break;
-				 
-				 case '2':
-				 	strcpy(logReg.userAdmin, "1");
-				 	registerUser();
-				 	break;
-				
-				default:
-					errorMessage();
-					goto loginRegisterUser;
-					break;
-			}
-			break;
-			
-		case '3':
-			helpLoginRegister();
-			break;
-			
-		case '4':
-//			exitProgram();
-			break;	
-			
-		default:
-			errorMessage();
-			goto loginRegisterUser;
-			break;
-		}
-}
-
 void loginUser () {
 	char str[1000]; char *pos; char *pas, continueText [50]= "Press any key to continue ...";
 	int _X = getScreenWidth() / 2 - 31;
@@ -835,24 +772,4 @@ void deletesProfileUser (){
 	fclose(file);
 	strcpy(logReg.userId, "");
 	printBanner ();
-}
-
-void helpLoginRegister (){
-	headerLayout("", "\t", "Help Page\t");
-	line(3);
-	lineText('o', "\t\t\t\tREGISTER\t\t\t\t\t");
-	line(3);
-	
-	lineText('o', "1. Username, ID, Email, Password can't more than 13 and less than 6 character\t");
-	line(1);
-	lineText('o', "2. Username, ID, Email, Password can contain character and number\t\t");
-	line(1);
-	lineText('o', "3. ID can't be same to other user ID\t\t\t\t\t\t");
-	line(3);
-	getch();
-	loginRegisterUser ();
-}
-
-void errorMessageEmail (){
-	lineText('a', "\t\tMust contain '@', press any key to try again...\t\t\t");
 }

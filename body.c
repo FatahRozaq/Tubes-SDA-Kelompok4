@@ -316,8 +316,10 @@ void medicalCheckUpRecommendation () {
 }
 
 void medicalCheckUpDisclaimer () {
+	int _X = getScreenWidth() / 2 - 70, _Y = getScreenHeight() / 2 - 16;
 	//disclaimer
-	
-	printf("\n\nThis medical check up tool is not a substitute for a medical consultation. Always consult your doctor before deciding on treatment for an illness. This program does not provide medical advice, diagnosis, or treatment.");
+	printf("\n\nAlat Cek Risiko ini bukanlah pengganti konsultasi medis. Selalu konsultasi\n");
+	printf("ke dokter Anda sebelum memutuskan perawatan terkait sebuah penyakit.\n");
+	printf("Hello Sehat tidak memberikan saran medis, diagnosis, atau perawatan.");
 
 }

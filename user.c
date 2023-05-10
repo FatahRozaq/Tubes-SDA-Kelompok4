@@ -115,7 +115,7 @@ void userPage () {
 	//		diseaseData ();
 		}
 		else if (menu == 0 && (inputUserPage == 'x' || inputUserPage == 'X')) {
-			exitProgram ();
+			exit (0);
 			break;
 		}
 		else if (profile == 0 && (inputUserPage == 'u' || inputUserPage == 'U')) {
@@ -137,62 +137,41 @@ void userPage () {
 }
 
 void medicalCheckUp () {
-	char* diseaseResult;
+	char inputMedicalCheckUp;
+	Node *root;
+	int _X = getScreenWidth() / 2 - 70, _Y = getScreenHeight() / 2 - 16;
 	
-	Node *root = createNode("Apakah Anda mengalami sakit dada? (y/n) ");
-    root->yes = createNode("Apakah sakit dada berlangsung lebih dari 5 menit? (y/n) ");
-    root->no = createNode("Apakah Anda merasa sesak napas? (y/n) ");
-    root->yes->yes = createNode("Anda menderita serangan jantung.");
-    root->yes->no = createNode("Apakah Anda merasa pusing? (y/n) ");
-    root->yes->no->yes = createNode("Anda menderita penyakit jantung koroner.");
-    root->yes->no->no = createNode("Anda menderita angina.");
-    root->no->yes = createNode("Anda menderita gagal jantung.");
-    root->no->no = createNode("Apakah Anda merasa lelah? (y/n) ");
-    root->no->no->yes = createNode("Anda menderita penyakit jantung bawaan.");
+	system ("cls");
+	layoutXY (8);
+	
+	gotoxy(_X + 28, _Y + 26);
+	scanf (" %c", &inputMedicalCheckUp); fflush (stdin);
+	
+	switch (inputMedicalCheckUp) {
+		case '1':
+			
+			root = createNode("Apakah Anda mengalami sakit dada? (y/n) ");
+		    root->yes = createNode("Apakah sakit dada berlangsung lebih dari 5 menit? (y/n) ");
+		    root->no = createNode("Apakah Anda merasa sesak napas? (y/n) ");
+		    root->yes->yes = createNode("Anda menderita serangan jantung.");
+		    root->yes->no = createNode("Apakah Anda merasa pusing? (y/n) ");
+		    root->yes->no->yes = createNode("Anda menderita penyakit jantung koroner.");
+		    root->yes->no->no = createNode("Anda menderita angina.");
+		    root->no->yes = createNode("Anda menderita gagal jantung.");
+		    root->no->no = createNode("Apakah Anda merasa lelah? (y/n) ");
+		    root->no->no->yes = createNode("Anda menderita penyakit jantung bawaan.");
  
+			break;
+			
+		case '2':
+			
+			break;
+	}
+	
 //    diseaseResult = startAnalysis(root);
     
     medicalCheckUpResults (startAnalysis(root));
     getch ();
     userPage ();
 //    printf("Penyakit anda : %s", diseaseResult);
-}
-
-void exitProgram() {
-	char inputExit;
-	
-	exit:
-		headerLayout("", "\t", "Exit Page\t");
-		line(0);
-		lineText('o', "\t\t\t Are you sure you want to exit?\t\t\t\t");
-		line(0);
-		lineText('o', "\t\t\t\t1. Yes\t\t\t\t\t\t");
-		lineText('o', "\t\t\t\t2. No\t\t\t\t\t\t");
-		line(0);
-		inputType(&inputExit);
-		
-		switch(inputExit){
-			case '1':
-				line(0);
-				line(2);
-				exit(0);
-				break;
-				
-			case '2':
-				if (strcmp(logReg.userAdmin, "1") == 0) {
-					adminPage();
-				}
-				else if (strcmp(logReg.userId, "") == 0) {
-					loginRegisterUser();
-				}
-				else {
-					userPage ();
-				}
-				break;
-				
-			default:
-				errorMessage();
-				goto exit;
-				break;
-		}
 }

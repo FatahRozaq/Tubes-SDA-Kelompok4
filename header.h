@@ -62,13 +62,10 @@ void errorMessage();
 void inputType(char *typeHere);
 
 //loginRegister.c
-void loginRegisterUser();
 void loginUser();
 void registerUser();
 void updateProfileUser();
 void deletesProfileUser();
-void helpLoginRegister();
-void errorMessageEmail();
 
 //admin.c
 void adminPage ();

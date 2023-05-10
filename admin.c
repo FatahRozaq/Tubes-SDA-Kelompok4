@@ -123,10 +123,10 @@ void adminPage(){
 			userData ();
 		}
 		else if (menu == 0 && (inputAdminPage == 'b' || inputAdminPage == 'B')) {
-	//		diseaseData ();
+			
 		}
 		else if (menu == 0 && (inputAdminPage == 'x' || inputAdminPage == 'X')) {
-			exitProgram ();
+			exit (0);
 			break;
 		}
 		else if (profile == 0 && (inputAdminPage == 'u' || inputAdminPage == 'U')) {
