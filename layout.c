@@ -219,20 +219,6 @@ void layoutXY (int layoutType) {
 			gotoxy(_X + 55, _Y + 13);
 			printf("%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c\n",200,205, 205, 205, 205, 205,205,205,205,205 ,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205, 205, 205,188);
 			
-//			gotoxy(_X + 10, _Y + 10);
-//			printf ("Ini adalah alat-alat untuk memeriksa kondisi kesehatan Anda.");
-//			
-//			gotoxy(_X + 55, _Y + 17);
-//			printf("%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c\n",201,205, 205, 205,205, 205,205,205,205,205 ,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205, 205, 205,187);
-//			gotoxy(_X + 55, _Y + 18);
-//			printf ("%c                                  %c", 186, 186);
-//			gotoxy(_X + 55, _Y + 19);
-//			printf ("%c  Mulai melakukan pengecekan (m)  %c", 186, 186);
-//			gotoxy(_X + 55, _Y + 20);
-//			printf ("%c                                  %c", 186, 186);
-//			gotoxy(_X + 55, _Y + 21);
-//			printf("%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c\n",200,205, 205, 205, 205, 205,205,205,205,205 ,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205, 205, 205,188);
-
 			gotoxy(_X + 3, _Y + 25);
 			printf("%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c\n",201,205, 205, 205 ,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205, 205, 205,187);
 			gotoxy(_X + 3, _Y + 26);
@@ -270,9 +256,9 @@ void layoutXY (int layoutType) {
 			gotoxy(_X + 110, _Y + 31);
 			printf ("INFORMASI");
 			gotoxy(_X + 110, _Y + 33);
-			printf ("Syarat dan Ketentuan (s)");
+			printf ("Syarat dan Ketentuan");
 			gotoxy(_X + 110, _Y + 35);
-			printf ("Kebijakan Privasi (k)");
+			printf ("Kebijakan Privasi");
 			
 			break;
 			
@@ -343,9 +329,9 @@ void layoutXY (int layoutType) {
 			gotoxy(_X + 110, _Y + 31);
 			printf ("INFORMASI");
 			gotoxy(_X + 110, _Y + 33);
-			printf ("Syarat dan Ketentuan (s)");
+			printf ("Syarat dan Ketentuan");
 			gotoxy(_X + 110, _Y + 35);
-			printf ("Kebijakan Privasi (k)");
+			printf ("Kebijakan Privasi");
 			
 			break;
 			

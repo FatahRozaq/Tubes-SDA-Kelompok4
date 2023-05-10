@@ -18,23 +18,28 @@ void adminPage(){
 				Menu:
 				menu = 0;
 				gotoxy(_X + 55, _Y + 14);
-				printf ("%c          DATA USER (S)           %c", 186, 186);
+				printf ("%c        DATA PENYAKIT (A)         %c", 186, 186);
 				gotoxy(_X + 55, _Y + 15);
 				printf("%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c\n",200,205, 205, 205, 205, 205,205,205,205,205 ,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205, 205, 205,188);
-		
+				
 				gotoxy(_X + 55, _Y + 16);
-				printf ("%c           BANTUAN (B)            %c", 186, 186);
+				printf ("%c          DATA USER (S)           %c", 186, 186);
 				gotoxy(_X + 55, _Y + 17);
 				printf("%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c\n",200,205, 205, 205, 205, 205,205,205,205,205 ,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205, 205, 205,188);
 		
 				gotoxy(_X + 55, _Y + 18);
-				printf ("%c         TENTANG KAMI (T)         %c", 186, 186);
+				printf ("%c           BANTUAN (B)            %c", 186, 186);
 				gotoxy(_X + 55, _Y + 19);
 				printf("%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c\n",200,205, 205, 205, 205, 205,205,205,205,205 ,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205, 205, 205,188);
 		
 				gotoxy(_X + 55, _Y + 20);
-				printf ("%c             EXIT (X)             %c", 186, 186);
+				printf ("%c         TENTANG KAMI (T)         %c", 186, 186);
 				gotoxy(_X + 55, _Y + 21);
+				printf("%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c\n",200,205, 205, 205, 205, 205,205,205,205,205 ,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205, 205, 205,188);
+		
+				gotoxy(_X + 55, _Y + 22);
+				printf ("%c             EXIT (X)             %c", 186, 186);
+				gotoxy(_X + 55, _Y + 23);
 				printf("%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c\n",200,205, 205, 205, 205, 205,205,205,205,205 ,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205, 205, 205,188);
 	
 			}
@@ -105,6 +110,10 @@ void adminPage(){
 					goto Menu;
 				}
 			}
+		}
+		else if (menu == 0 && (inputAdminPage == 'a' || inputAdminPage == 'A')) {
+			karakteristikPenyakit ();
+			break;
 		}
 		else if (menu == 0 && (inputAdminPage == 's' || inputAdminPage == 'S')) {
 			userData ();
@@ -236,7 +245,7 @@ void userData(){
 						printf("%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c\n",200,205, 205, 205, 205, 205,205,205,205,205 ,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205, 205, 205,188);
 			
 						gotoxy(_X + 101, _Y + 25);
-						printf ("%c             EXIT (C)             %c", 186, 186);
+						printf ("%c             EXIT (X)             %c", 186, 186);
 						gotoxy(_X + 101, _Y + 26);
 						printf("%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c\n",200,205, 205, 205, 205, 205,205,205,205,205 ,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205, 205, 205,188);
 			
@@ -318,6 +327,10 @@ void userData(){
 			else if (menu == 0 && (inputUserData == 'c' || inputUserData == 'C')) {
 				deleteAdmin();
 			}
+			else if (menu == 0 && (inputUserData == 'x' || inputUserData == 'X')) {
+				adminPage ();
+				break;
+			}
 			else if (profile == 0 && (inputUserData == 'u' || inputUserData == 'U')) {
 				updateProfileUser();
 			}
@@ -327,10 +340,6 @@ void userData(){
 			else if (profile == 0 && (inputUserData == 'l' || inputUserData == 'L')) {
 				strcpy(logReg.userId, "");
 				printBanner ();
-				break;
-			}
-			else if (profile == 0 && (inputUserData == 'x' || inputUserData == 'X')) {
-				adminPage ();
 				break;
 			}
 			else {
@@ -403,6 +412,8 @@ void updateAdmin(){
 					
 					system("cls");
 					layoutXY (2);
+					gotoxy(_X + 25, _Y + 3);
+					printf ("  Update Profile");
 					gotoxy(_X +22, _Y + 7);
 					scanf("%[^\n]s", &edit[index].user);fflush(stdin);
 //					lineText('i', "Update Username");
@@ -445,6 +456,8 @@ void updateAdmin(){
 						
 						system ("cls");	
 						layoutXY (2);
+						gotoxy(_X + 25, _Y + 3);
+						printf ("  Update Profile");
 						gotoxy(_X +22, _Y + 7);
 						printf ("%s", edit[index].user);
 						goto updateProfileUserId;
@@ -466,6 +479,13 @@ void updateAdmin(){
 							    Sleep(1);
 							}
 							getch ();
+							
+							system ("cls");	
+							layoutXY (2);
+							gotoxy(_X + 25, _Y + 3);
+							printf ("  Update Profile");
+							gotoxy(_X +22, _Y + 7);
+							printf ("%s", edit[index].user);
 //							lineText('a', "\t\t\tThe User ID is already exist!\t\t\t\t");
 							goto updateProfileUserId;
 							break;
@@ -505,6 +525,8 @@ void updateAdmin(){
 						
 						system ("cls");	
 						layoutXY (2);
+						gotoxy(_X + 25, _Y + 3);
+						printf ("  Update Profile");
 						gotoxy(_X +22, _Y + 7);
 						printf ("%s", edit[index].user);
 						gotoxy(_X +22, _Y + 11);
@@ -529,6 +551,8 @@ void updateAdmin(){
 			//			lineText('b', "\t\t\t\tEmail must contain '@'\t\t\t\t");
 						system ("cls");	
 						layoutXY (2);
+						gotoxy(_X + 25, _Y + 3);
+						printf ("  Update Profile");
 						gotoxy(_X +22, _Y + 7);
 						printf ("%s", edit[index].user);
 						gotoxy(_X +22, _Y + 11);
@@ -580,6 +604,8 @@ void updateAdmin(){
 		//				lineText('b', "\t\t\t\tPasswords are not match!\t\t\t\t");
 						system ("cls");	
 						layoutXY (2);
+						gotoxy(_X + 25, _Y + 3);
+						printf ("  Update Profile");
 						gotoxy(_X +22, _Y + 7);
 						printf ("%s", edit[index].user);
 						gotoxy(_X +22, _Y + 11);
@@ -643,6 +669,8 @@ void updateAdmin(){
 		//				lineText('b', "\t\t\t\tPasswords are not match!\t\t\t\t");
 						system ("cls");	
 						layoutXY (2);
+						gotoxy(_X + 25, _Y + 3);
+						printf ("  Update Profile");
 						gotoxy(_X +22, _Y + 7);
 						printf ("%s", edit[index].user);
 						gotoxy(_X +22, _Y + 11);

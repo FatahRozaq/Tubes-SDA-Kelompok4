@@ -6,7 +6,10 @@ int main(){
 	
     // Make the console windows become full-size
 	ShowWindow(GetConsoleWindow(), SW_MAXIMIZE);
+	
+	system("title Medical Check Up");
 //	adminPage();
 //	userData ();
+//	karakteristikPenyakit();
 	printBanner ();
 }

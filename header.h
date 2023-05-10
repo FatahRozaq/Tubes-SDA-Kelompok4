@@ -65,7 +65,6 @@ void inputType(char *typeHere);
 void loginRegisterUser();
 void loginUser();
 void registerUser();
-//void profileUser();
 void updateProfileUser();
 void deletesProfileUser();
 void helpLoginRegister();
@@ -80,7 +79,6 @@ void deleteAdmin ();
 //user.c
 void userPage ();
 void medicalCheckUp ();
-//void profile ();
 void exitProgram ();
 
 //body.c

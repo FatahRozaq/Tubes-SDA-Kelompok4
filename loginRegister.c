@@ -72,7 +72,6 @@ void loginUser () {
 	
 	// Inisialisasi jendela cmd agar bersih
     system("cls");
-	system("title Sicuker Gamestore"); //SetConsoleTitle("Sicuker Gamestore");
 	
 	gotoxy(_X + 10, _Y + 19);
 	printf("Don't have an account? Press r to register");
@@ -496,48 +495,6 @@ void registerUser () {
 	}
 }
 
-//void profileUser () {
-//	char id[50];
-//	int _X = getScreenWidth() / 2 - 70, _Y = getScreenHeight() / 2 - 16;
-//	
-//	strcpy(id, logReg.userId);
-//    file = fopen("user.txt", "r");
-//    while (!feof(file)){
-//		fscanf(file,"%[^_]_%[^_]_%[^_]_%[^_]_%[^\n]\n",&dataUser.user, &dataUser.userId, &dataUser.email, &dataUser.password, &dataUser.userAdmin);
-//		fflush(stdin);
-//		if(strcmp(id, dataUser.userId) == 0){
-//			gotoxy(_X + 125, _Y + 1);
-//			printf("%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c\n",201,205,205,205,205,205 ,205,205,205,205, 205,205,205,205,205,205,205,205 ,205,205,205,205, 205,205,205,205, 187);
-//			gotoxy(_X + 151, _Y + 2);
-//			printf("%c", 186);
-//			gotoxy(_X + 125, _Y + 3);
-//			printf("%c Username: %s ", 186, dataUser.user);
-//			gotoxy(_X + 151, _Y + 3);
-//			printf("%c", 186);
-//			gotoxy(_X + 125, _Y + 4);
-//		    printf("%c ID      : %s ", 186, dataUser.userId);
-//			gotoxy(_X + 151, _Y + 4);
-//			printf("%c", 186);
-//			gotoxy(_X + 125, _Y + 5);
-//		    printf("%c Email   : %s ", 186, dataUser.email);
-//			gotoxy(_X + 151, _Y + 5);
-//			printf("%c", 186);
-//			gotoxy(_X + 125, _Y + 6);
-//		    printf("%c Password: %s ", 186, dataUser.password);
-//			gotoxy(_X + 151, _Y + 6);
-//			printf("%c", 186);
-//		}
-//	}
-//	fclose(file);
-//	if (logReg.userAdmin == "1") {
-//		adminPage ();
-//	}
-//	else {
-//		userPage ();
-//	}
-//}
-
-
 void updateProfileUser(){
 	User edit[50];
 	char id[50], checkPassword = '0', confirmPassword[20], checkEmail[50], continueText [50]= "Press any key to continue ...";
@@ -557,6 +514,8 @@ void updateProfileUser(){
 					
 					system("cls");
 					layoutXY (2);
+					gotoxy(_X + 25, _Y + 3);
+					printf ("  Update Profile");
 					gotoxy(_X +22, _Y + 7);
 					scanf("%[^\n]s", &edit[index].user);fflush(stdin);
 //					lineText('i', "Update Username");
@@ -601,6 +560,8 @@ void updateProfileUser(){
 						
 						system ("cls");	
 						layoutXY (2);
+						gotoxy(_X + 25, _Y + 3);
+						printf ("  Update Profile");
 						gotoxy(_X +22, _Y + 7);
 						printf ("%s", edit[index].user);
 						goto updateProfileUserId;
@@ -622,6 +583,13 @@ void updateProfileUser(){
 							    Sleep(1);
 							}
 							getch ();
+							
+							system ("cls");	
+							layoutXY (2);
+							gotoxy(_X + 25, _Y + 3);
+							printf ("  Update Profile");
+							gotoxy(_X +22, _Y + 7);
+							printf ("%s", edit[index].user);
 //							lineText('a', "\t\t\tThe User ID is already exist!\t\t\t\t");
 							goto updateProfileUserId;
 							break;
@@ -662,6 +630,8 @@ void updateProfileUser(){
 						
 						system ("cls");	
 						layoutXY (2);
+						gotoxy(_X + 25, _Y + 3);
+						printf ("  Update Profile");
 						gotoxy(_X +22, _Y + 7);
 						printf ("%s", edit[index].user);
 						gotoxy(_X +22, _Y + 11);
@@ -686,6 +656,8 @@ void updateProfileUser(){
 			//			lineText('b', "\t\t\t\tEmail must contain '@'\t\t\t\t");
 						system ("cls");	
 						layoutXY (2);
+						gotoxy(_X + 25, _Y + 3);
+						printf ("  Update Profile");
 						gotoxy(_X +22, _Y + 7);
 						printf ("%s", edit[index].user);
 						gotoxy(_X +22, _Y + 11);
@@ -738,6 +710,8 @@ void updateProfileUser(){
 		//				lineText('b', "\t\t\t\tPasswords are not match!\t\t\t\t");
 						system ("cls");	
 						layoutXY (2);
+						gotoxy(_X + 25, _Y + 3);
+						printf ("  Update Profile");
 						gotoxy(_X +22, _Y + 7);
 						printf ("%s", edit[index].user);
 						gotoxy(_X +22, _Y + 11);
@@ -801,6 +775,8 @@ void updateProfileUser(){
 		//				lineText('b', "\t\t\t\tPasswords are not match!\t\t\t\t");
 						system ("cls");	
 						layoutXY (2);
+						gotoxy(_X + 25, _Y + 3);
+						printf ("  Update Profile");
 						gotoxy(_X +22, _Y + 7);
 						printf ("%s", edit[index].user);
 						gotoxy(_X +22, _Y + 11);
