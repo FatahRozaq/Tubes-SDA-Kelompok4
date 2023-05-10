@@ -37,8 +37,10 @@ void viewAsc(alamat First){
 	alamat P;
 	int i;
 	i=1;
-	printf("Traversal Asc :\n");
-	P = First;
+	if (First == Nil){
+		printf("Daftar Kosong");
+	}
+		P = First;
 	while (P != Nil)
 	{
 		printf("%d. %s \n", i, info(P));
@@ -47,34 +49,165 @@ void viewAsc(alamat First){
 	}
 }
 
-alamat inputPertanyaan(){
+void inputTanya(alamat *First,alamat *Last){
+	
 	char input[100];
-	alamat P,First,Last;
-	char choice;
-
-	First=Nil;
-	Last=Nil;
-
-	choice = 'y';
-	do{
-		printf("\nInput : ");
+	alamat P;
+		printf("\nMasukkan pertanyaan :");
 		scanf("\n%[^\n]", input); // membaca input string dari pengguna
-
-		if (First == Nil){
+		
+		if (*First == Nil){
 			P = createlist(input);
-			First = P;
-			Last = P;
+			*First = P;
+			*Last = P;
 		}
 		else{
 			P = createlist(input);
-			insLast(&P,&Last);
+			insLast(&P,Last);
 		}
+	
+}
+void inputDiagnosis(alamat *First,alamat *Last){
+	
+	char input[100];
+	alamat P;
+		printf("\nMasukkan Diagnosis :");
+		scanf("\n%[^\n]", input); // membaca input string dari pengguna
+		
+		if (*First == Nil){
+			P = createlist(input);
+			*First = P;
+			*Last = P;
+		}
+		else{
+			P = createlist(input);
+			insLast(&P,Last);
+		}
+	
+}
 
-		printf("\nApakah anda akan input lagi?");
+void menuPilihanInput(){
+	printf("\n1. Input Pertanyaan");
+	printf("\n2. Input Diagnosis");
+	printf("\n3. Daftar Penyakit dan Diagnosis");
+	printf("\nPilihan : ");
+}
+address findNodeWithValue(address root, char* value) {
+    if (root == NULL) {
+        return NULL; // Jika root kosong, return NULL
+    }
+
+    if (strcmp(root->question, value) == 0) {
+        return root; // Jika nilai root sama dengan value, return root
+    }
+
+    address foundNode = findNodeWithValue(root->yes, value); // Cari node pada sub-tree yes
+    if (foundNode == NULL) {
+        foundNode = findNodeWithValue(root->no, value); // Jika tidak ditemukan pada sub-tree yes, cari pada sub-tree no
+    }
+
+    return foundNode;
+}
+void assignSubvarTree(address destNode, char valueNode[]){
+	printf("\nPilih pertanyaan atau diagnosis yang ditampilkan jika No :");
+    printf("\nDiagnosis awali dengan huruf D (ex:D1)\n");
+    scanf("%s",valueNode);
+    assignNo(destNode,valueNode);
+    printf("\nPilih pertanyaan atau diagnosis yang ditampilkan jika Yes :");
+    printf("\nDiagnosis awali dengan huruf D (ex:D1)\n");
+    scanf("%s",valueNode);
+    assignYes(destNode,valueNode);
+}
+
+address skemaTree(address root,alamat pPertanyaan, alamat pDiagnosis){
+    
+    int no;
+    char valueNode[2];
+    address searchPointer;
+    if(isEmpty(root)){
+    printf("\n Pilih Pertanyaan yang menjadi Root:");
+	scanf("%s",&valueNode);
+    root = createNode(valueNode);
+	assignSubvarTree(root,valueNode);
+
+    }
+    
+	else{
+	printTree(root,0);
+	printf("\nIngin input ke node mana apa: ");
+	scanf("%s", &valueNode);
+	searchPointer=findNodeWithValue(root,valueNode);
+	assignSubvarTree(searchPointer,valueNode);
+	}
+    printTree(root,0);
+    return root;
+
+}
+
+alamat membangunModul(){
+	char input[100],jenisPenyakit[30];
+	alamat P,D,First,Last,pPertanyaan,pDiagnosis;
+	address root;
+	alamat lastPenyakit,lastDiagnosis;
+	char choice;
+	int pilih;
+	lastPenyakit=Nil;
+	lastDiagnosis=Nil;
+	pPertanyaan = Nil;
+	pDiagnosis = Nil;
+	root=Nil;
+	First=Nil;
+	Last=Nil;
+	printf("\nMasukkan jenis penyakit :");
+	scanf("%[^\n]",&jenisPenyakit);
+	
+	
+
+	
+	choice = 'y';
+	do{
+	system("cls");
+	printf("\nJenis Penyakit : %s", jenisPenyakit);
+	
+	menuPilihanInput();
+	scanf("%d",&pilih);
+	
+	if(pilih == 1){
+		inputTanya(&pPertanyaan,&lastPenyakit);
+	}
+	
+	else if (pilih == 2){
+		inputDiagnosis(&pDiagnosis,&lastDiagnosis);
+	}
+	
+	else if (pilih == 3){
+		printf("\nPertanyaan \n");
+		viewAsc(pPertanyaan);
+		printf("\nDiagnosis : \n");
+		viewAsc(pDiagnosis);
+	}
+	
+	else if(pilih == 4){
+		printf("\nPertanyaan : \n");
+		viewAsc(pPertanyaan);
+		printf("\nDiagnosis : \n");
+		viewAsc(pDiagnosis);
+		
+	root =skemaTree(root,pPertanyaan,pDiagnosis);
+	}
+		
+		
+		
+		printf("\n\nKembali ke menu sebelumnya?");
 		scanf("\n%c",&choice);
 	}while(choice=='y'||choice=='Y');
-
+	
 	viewAsc(First);
+	P=First;
+	while(P!=Nil){
+		simpanPertanyaan(info(P));
+		P=next(P);
+	}
 	return First;
 }
 
@@ -114,18 +247,9 @@ void simpanPertanyaan(char pertanyaan[]){
    fclose(fp);
 
 }
-void createTree(alamat First){
-	int pertanyaan;
-	alamat pointPertanyaan;
-	printf("\nMembuat modul penyakit :");
-	viewAsc(First);
-	printf("\n Pilih Pertanyaan yang menjadi Root:");
-	scanf("%d",&pertanyaan);
-	pointPertanyaan=searchPertanyaan(First,pertanyaan);
-	printf("\n%s", info(pointPertanyaan));
-}
 
-	void menuPertanyaan(alamat First){
+
+void menuPertanyaan(alamat First){
 	system("cls");
 	int pilihan;
 	viewAsc(First);
@@ -138,7 +262,7 @@ void createTree(alamat First){
 	scanf("%d",&pilihan);
 
 	if(pilihan ==1){
-		createTree(First);
+		
 	}
 	else if(pilihan == 2){
 
@@ -185,6 +309,13 @@ void printTree(address node, int space) {
 
     printTree(node->no, space);
     printf("\n");
+}
+
+void DifaDebugging(){
+	alamat First;
+	int noPertanyaan;
+	First=membangunModul();
+
 }
 
 //char* startAnalysis(Node *root) {

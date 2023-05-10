@@ -90,6 +90,19 @@ char* startAnalysis (Node *root);
 void medicalCheckUpResults (char* diseaseResult);
 void medicalCheckUpRecommendation ();
 void medicalCheckUpDisclaimer ();
+alamat createlist(char* huruf);
+void insLast(alamat *P, alamat *Last);
+void viewAsc(alamat First);
+alamat inputPertanyaan();
+void deleteTree(Node *root);
+alamat searchPertanyaan(alamat First, int noPertanyaan);
+void simpanPertanyaan(char pertanyaan[]);
+void createTree(alamat First);
+void menuPertanyaan(alamat First);
+void assignNo(address nodeTree, char pertanyaan[]);
+void assignYes(address nodeTree, char pertanyaan[]);
+void printLine(int space);
+void printTree(address node, int space);
 
 //karakterPenyakit
 void karakteristikPenyakit();
@@ -100,5 +113,3 @@ void updateNode(addressKarakterPenyakit *head, int id, char* namaPenyakit, char*
 void displayList(addressKarakterPenyakit head);
 void saveListToFile(addressKarakterPenyakit head, char* filename);
 void loadListFromFile(addressKarakterPenyakit *head, char* filename);
-
-
