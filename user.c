@@ -139,16 +139,16 @@ void userPage () {
 void medicalCheckUp () {
 	char* diseaseResult;
 	
-	Node *root = createNode("Apakah Anda mengalami sakit dada? (y/n) ");
-    root->yes = createNode("Apakah sakit dada berlangsung lebih dari 5 menit? (y/n) ");
-    root->no = createNode("Apakah Anda merasa sesak napas? (y/n) ");
-    root->yes->yes = createNode("Anda menderita serangan jantung.");
-    root->yes->no = createNode("Apakah Anda merasa pusing? (y/n) ");
-    root->yes->no->yes = createNode("Anda menderita penyakit jantung koroner.");
-    root->yes->no->no = createNode("Anda menderita angina.");
-    root->no->yes = createNode("Anda menderita gagal jantung.");
-    root->no->no = createNode("Apakah Anda merasa lelah? (y/n) ");
-    root->no->no->yes = createNode("Anda menderita penyakit jantung bawaan.");
+//	Node *root = createNode("Apakah Anda mengalami sakit dada? (y/n) ");
+//    root->yes = createNode("Apakah sakit dada berlangsung lebih dari 5 menit? (y/n) ");
+//    root->no = createNode("Apakah Anda merasa sesak napas? (y/n) ");
+//    root->yes->yes = createNode("Anda menderita serangan jantung.");
+//    root->yes->no = createNode("Apakah Anda merasa pusing? (y/n) ");
+//    root->yes->no->yes = createNode("Anda menderita penyakit jantung koroner.");
+//    root->yes->no->no = createNode("Anda menderita angina.");
+//    root->no->yes = createNode("Anda menderita gagal jantung.");
+//    root->no->no = createNode("Apakah Anda merasa lelah? (y/n) ");
+//    root->no->no->yes = createNode("Anda menderita penyakit jantung bawaan.");
  
 //    diseaseResult = startAnalysis(root);
     

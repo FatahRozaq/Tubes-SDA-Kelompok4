@@ -331,6 +331,33 @@ void DifaDebugging(){
 //    printTree(node->yes, space);
 //}
 
+//char* startAnalysis(Node *root) {
+//    char answer[10];
+//    Node *current = root;
+//    while (current != NULL) {
+//    	if(current->yes != NULL || current->yes != NULL){
+//    		printf("%s", current->question);
+//	        scanf("%s", answer);
+//	        if (strcmp(answer, "y") == 0) {
+//				current = current->yes;
+//	        } 
+//			else if (strcmp(answer, "n") == 0) {
+//	            current = current->no;
+//	            if (current == NULL) {
+//	                return("Anda sehat.\n");
+//	            }
+//	        } 
+//			else {
+//	            printf("Maaf, Input yang anda lakukan tidak valid.\n");
+//	        }
+//		}else{
+//			return(current->question);
+//		}
+//        
+//    }
+//    
+//}
+
 char* startAnalysis(Node *root) {
     char answer[10];
     Node *current = root;

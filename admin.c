@@ -3,6 +3,7 @@
 
 void adminPage(){
 	char inputAdminPage;
+	char *temp;
 	int _X = getScreenWidth() / 2 - 70, _Y = getScreenHeight() / 2 - 16, menu = 1, profile = 1;
 
 	system ("cls");
@@ -113,6 +114,14 @@ void adminPage(){
 		}
 		else if (menu == 0 && (inputAdminPage == 'a' || inputAdminPage == 'A')) {
 //			menuPertanyaan ();
+			break;
+		}
+		else if (menu == 0 && (inputAdminPage == 'j' || inputAdminPage == 'J')) {
+			DifaDebugging();
+			break;
+		}
+		else if (menu == 0 && (inputAdminPage == 'y' || inputAdminPage == 'y')) {
+			medicalCheckUp ();
 			break;
 		}
 		else if (menu == 0 && (inputAdminPage == 'k' || inputAdminPage == 'K')) {
