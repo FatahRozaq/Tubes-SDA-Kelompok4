@@ -10,7 +10,6 @@ addressKarakterPenyakit createNodePenyakit(int id, char* namaPenyakit, char* kar
     return newNode;
 }
 
-/* Fungsi untuk menambahkan node ke linked list */
 void insertNode(addressKarakterPenyakit *head, int id, char* namaPenyakit, char* karakteristik) {
     addressKarakterPenyakit current = *head;
     addressKarakterPenyakit newNode = createNodePenyakit(id, namaPenyakit, karakteristik);
@@ -25,7 +24,6 @@ void insertNode(addressKarakterPenyakit *head, int id, char* namaPenyakit, char*
     }
 }
 
-/* Fungsi untuk menghapus node dari linked list */
 void deleteNode(addressKarakterPenyakit *head, int id) {
     addressKarakterPenyakit current = *head;
     addressKarakterPenyakit prev = NULL;
@@ -49,7 +47,6 @@ void deleteNode(addressKarakterPenyakit *head, int id) {
     free(current);
 }
 
-/* Fungsi untuk mengubah data pada node dalam linked list */
 void updateNode(addressKarakterPenyakit *head, int id, char* namaPenyakit, char* karakteristik) {
     addressKarakterPenyakit current = *head;
 
@@ -63,7 +60,6 @@ void updateNode(addressKarakterPenyakit *head, int id, char* namaPenyakit, char*
     }
 }
 
-/* Fungsi untuk menyimpan data dari linked list ke file txt */
 void saveListToFile(addressKarakterPenyakit head, char* filename) {
     FILE *file = fopen(filename, "w");
 
@@ -81,8 +77,6 @@ void saveListToFile(addressKarakterPenyakit head, char* filename) {
     }
 }
 
-
-/* Fungsi untuk menampilkan seluruh data pada linked list */
 void displayList(addressKarakterPenyakit head) {
     addressKarakterPenyakit current = head;
 
@@ -124,7 +118,6 @@ void karakteristikPenyakit(){
     int choice, id;
     char namaPenyakit[50], karakteristik[100], filename[50];
 
-    /* Load data dari file saat program dimulai */
     printf("Masukkan nama file penyimpanan data: ");
     scanf("%s", filename);
     loadListFromFile(&head, filename);
