@@ -125,7 +125,7 @@ void createTree(alamat First){
 	printf("\n%s", info(pointPertanyaan));
 }
 
-	void menuPertanyaan(alamat First){
+void menuPertanyaan(alamat First){
 	system("cls");
 	int pilihan;
 	viewAsc(First);
