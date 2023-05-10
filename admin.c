@@ -5,6 +5,7 @@ void adminPage(){
 	char inputAdminPage;
 	int _X = getScreenWidth() / 2 - 70, _Y = getScreenHeight() / 2 - 16, menu = 1, profile = 1;
 	
+<<<<<<< HEAD
 	system ("cls");
 	for (;;) {
 		layoutXY (4);
@@ -108,6 +109,15 @@ void adminPage(){
 		}
 		else if (menu == 0 && (inputAdminPage == 's' || inputAdminPage == 'S')) {
 			userData ();
+=======
+	switch(inputAdminPage){
+		case '0':
+			karakteristikPenyakit();
+			break;
+			
+		case '1':
+			profile();
+>>>>>>> d4473d0aa0f4af0f9c023f80bf4c619f9dfde2b2
 			break;
 		}
 		else if (menu == 0 && (inputAdminPage == 'b' || inputAdminPage == 'B')) {
