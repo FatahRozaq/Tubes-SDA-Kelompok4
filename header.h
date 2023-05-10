@@ -62,13 +62,10 @@ void errorMessage();
 void inputType(char *typeHere);
 
 //loginRegister.c
-void loginRegisterUser();
 void loginUser();
 void registerUser();
 void updateProfileUser();
 void deletesProfileUser();
-void helpLoginRegister();
-void errorMessageEmail();
 
 //admin.c
 void adminPage ();
@@ -86,7 +83,7 @@ boolean isEmpty (address root);
 Node* createNode (char question[]);
 void deleteTree (Node *root);
 void printNode (char leaf[]);
-char* startAnalysis (Node *root);
+char* startAnalysis (address root);
 void medicalCheckUpResults (char* diseaseResult);
 void medicalCheckUpRecommendation ();
 void medicalCheckUpDisclaimer ();
@@ -113,3 +110,5 @@ void updateNode(addressKarakterPenyakit *head, int id, char* namaPenyakit, char*
 void displayList(addressKarakterPenyakit head);
 void saveListToFile(addressKarakterPenyakit head, char* filename);
 void loadListFromFile(addressKarakterPenyakit *head, char* filename);
+
+

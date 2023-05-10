@@ -113,15 +113,7 @@ void adminPage(){
 			}
 		}
 		else if (menu == 0 && (inputAdminPage == 'a' || inputAdminPage == 'A')) {
-//			menuPertanyaan ();
-			break;
-		}
-		else if (menu == 0 && (inputAdminPage == 'j' || inputAdminPage == 'J')) {
 			DifaDebugging();
-			break;
-		}
-		else if (menu == 0 && (inputAdminPage == 'y' || inputAdminPage == 'y')) {
-			medicalCheckUp ();
 			break;
 		}
 		else if (menu == 0 && (inputAdminPage == 'k' || inputAdminPage == 'K')) {
@@ -132,10 +124,10 @@ void adminPage(){
 			userData ();
 		}
 		else if (menu == 0 && (inputAdminPage == 'b' || inputAdminPage == 'B')) {
-	//		diseaseData ();
+			
 		}
 		else if (menu == 0 && (inputAdminPage == 'x' || inputAdminPage == 'X')) {
-			exitProgram ();
+			exit (0);
 			break;
 		}
 		else if (profile == 0 && (inputAdminPage == 'u' || inputAdminPage == 'U')) {

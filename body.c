@@ -144,7 +144,7 @@ address skemaTree(address root,alamat pPertanyaan, alamat pDiagnosis){
 
 }
 
-alamat membangunModul(){
+address membangunModul(){
 	char input[100],jenisPenyakit[30];
 	alamat P,D,First,Last,pPertanyaan,pDiagnosis;
 	address root;
@@ -195,6 +195,10 @@ alamat membangunModul(){
 		
 	root =skemaTree(root,pPertanyaan,pDiagnosis);
 	}
+	
+	else if(pilih== 5){
+		return root;
+	}
 		
 		
 		
@@ -202,13 +206,13 @@ alamat membangunModul(){
 		scanf("\n%c",&choice);
 	}while(choice=='y'||choice=='Y');
 	
-	viewAsc(First);
-	P=First;
-	while(P!=Nil){
-		simpanPertanyaan(info(P));
-		P=next(P);
-	}
-	return First;
+//	viewAsc(First);
+//	P=First;
+//	while(P!=Nil){
+//		simpanPertanyaan(info(P));
+//		P=next(P);
+//	}
+	
 }
 
 void deleteTree(Node *root) {
@@ -302,20 +306,29 @@ void printLine(int space) {
 
 // Menampilkan Binary Tree dengan notasi grafik
 void printTree(address node, int space) {
+ if (node == NULL) return;
 	int i;
-    if (node == NULL) return;
-
     space += 10;
 
-    printTree(node->no, space);
+    printTree(node->yes, space);
     printf("\n");
+
+    for (i = 10; i < space; i++) printf(" ");
+
+    printf("%s", node->question);
+
+    if (node->no != NULL && node->yes != NULL) {
+        printLine(space);
+    }
+
+    printTree(node->no, space);
 }
 
 void DifaDebugging(){
-	alamat First;
+	address root;
 	int noPertanyaan;
-	First=membangunModul();
-
+	rootPenyakit=membangunModul();
+	adminPage();
 }
 
 //char* startAnalysis(Node *root) {
@@ -358,9 +371,9 @@ void DifaDebugging(){
 //    
 //}
 
-char* startAnalysis(Node *root) {
+char* startAnalysis(address root) {
     char answer[10];
-    Node *current = root;
+    address current = root;
     while (current != NULL) {
     	if(current->yes != NULL || current->yes != NULL){
     		printf("%s", current->question);
@@ -403,8 +416,10 @@ void medicalCheckUpRecommendation () {
 }
 
 void medicalCheckUpDisclaimer () {
+	int _X = getScreenWidth() / 2 - 70, _Y = getScreenHeight() / 2 - 16;
 	//disclaimer
-	
-	printf("\n\nThis medical check up tool is not a substitute for a medical consultation. Always consult your doctor before deciding on treatment for an illness. This program does not provide medical advice, diagnosis, or treatment.");
+	printf("\n\nAlat Cek Risiko ini bukanlah pengganti konsultasi medis. Selalu konsultasi\n");
+	printf("ke dokter Anda sebelum memutuskan perawatan terkait sebuah penyakit.\n");
+	printf("Hello Sehat tidak memberikan saran medis, diagnosis, atau perawatan.");
 
 }
