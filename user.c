@@ -2,34 +2,164 @@
 
 void userPage () {
 	char inputUserPage;
-	int _X = getScreenWidth() / 2 - 70;
-	int _Y = getScreenHeight() / 2 - 16;
+	int _X = getScreenWidth() / 2 - 70, _Y = getScreenHeight() / 2 - 16, menu = 1, profile = 1;
 	
 	system ("cls");
+	for (;;) {
+		layoutXY (3);
+		
+		gotoxy(_X + 28, _Y + 26);
+		scanf (" %c", &inputUserPage); fflush (stdin);
+	//    inputUserPage = getch ();
+		if (inputUserPage == 'm' || inputUserPage == 'M') {
+			if (menu == 1) {
+				Menu:
+				menu = 0;
+				gotoxy(_X + 55, _Y + 14);
+				printf ("%c       Medical Check Up (S)       %c", 186, 186);
+				gotoxy(_X + 55, _Y + 15);
+				printf("%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c\n",200,205, 205, 205, 205, 205,205,205,205,205 ,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205, 205, 205,188);
+		
+				gotoxy(_X + 55, _Y + 16);
+				printf ("%c           BANTUAN (B)            %c", 186, 186);
+				gotoxy(_X + 55, _Y + 17);
+				printf("%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c\n",200,205, 205, 205, 205, 205,205,205,205,205 ,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205, 205, 205,188);
+		
+				gotoxy(_X + 55, _Y + 18);
+				printf ("%c         TENTANG KAMI (T)         %c", 186, 186);
+				gotoxy(_X + 55, _Y + 19);
+				printf("%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c\n",200,205, 205, 205, 205, 205,205,205,205,205 ,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205, 205, 205,188);
+		
+				gotoxy(_X + 55, _Y + 20);
+				printf ("%c             EXIT (X)             %c", 186, 186);
+				gotoxy(_X + 55, _Y + 21);
+				printf("%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c\n",200,205, 205, 205, 205, 205,205,205,205,205 ,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205, 205, 205,188);
 	
-	layoutXY (3);
+			}
+			else {
+				menu = 1;
+				system ("cls");
+				if (profile == 0) {
+					goto Profile;
+				}
+			}
+		}
+		else if (inputUserPage == 'p' || inputUserPage == 'P') {
+			if (profile == 1) {
+				Profile:
+				profile = 0;
+				char id[50];
+								
+				strcpy(id, logReg.userId);
+			    file = fopen("user.txt", "r");
+			    while (!feof(file)){
+					fscanf(file,"%[^_]_%[^_]_%[^_]_%[^_]_%[^\n]\n",&dataUser.user, &dataUser.userId, &dataUser.email, &dataUser.password, &dataUser.userAdmin);
+					fflush(stdin);
+					if(strcmp(id, dataUser.userId) == 0){
+						gotoxy(_X + 125, _Y + 1);
+						printf("%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c\n",201,205,205,205,205,205 ,205,205,205,205,205,205, 205,205,205,205, 187);
+						gotoxy(_X + 141, _Y + 2);
+						printf("%c", 186);
+//						gotoxy(_X + 125, _Y + 3);
+//						printf("%c               %c", 186, 186);
+						gotoxy(_X + 125, _Y + 3);
+						printf("%c %s ", 186, dataUser.user);
+						gotoxy(_X + 141, _Y + 3);
+						printf("%c", 186);
+						gotoxy(_X + 125, _Y + 4);
+					    printf("%c %s ", 186, dataUser.userId);
+						gotoxy(_X + 141, _Y + 4);
+						printf("%c", 186);
+						gotoxy(_X + 125, _Y + 5);
+					    printf("%c %s ", 186, dataUser.email);
+						gotoxy(_X + 141, _Y + 5);
+						printf("%c", 186);
+						gotoxy(_X + 125, _Y + 6);
+					    printf("%c %s ", 186, dataUser.password);
+						gotoxy(_X + 141, _Y + 6);
+						printf("%c", 186);
+						gotoxy(_X + 125, _Y + 7);
+						printf("==================", 186);
+						gotoxy(_X + 125, _Y + 8);
+						printf("%c   UPDATE (U)  %c", 186, 186);
+						gotoxy(_X + 125, _Y + 9);
+						printf("%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c\n",200,205,205,205,205,205 ,205,205,205,205,205,205, 205,205,205,205, 188);
+						gotoxy(_X + 125, _Y + 10);
+						printf("%c   DELETE (D)  %c", 186, 186);
+						gotoxy(_X + 125, _Y + 11);
+						printf("%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c\n",200,205,205,205,205,205 ,205,205,205,205,205,205, 205,205,205,205, 188);
+						gotoxy(_X + 125, _Y + 12);
+						printf("%c   LOGOUT (L)  %c", 186, 186);
+						gotoxy(_X + 125, _Y + 13);
+						printf("%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c\n",200,205,205,205,205,205 ,205,205,205,205,205,205, 205,205,205,205, 188);
+					}
+				}
+				fclose(file);
+			}
+			else {
+				profile = 1;
+				system ("cls");
+				if (menu == 0) {
+					goto Menu;
+				}
+			}
+		}
+		else if (menu == 0 && (inputUserPage == 's' || inputUserPage == 'S')) {
+			medicalCheckUp ();
+			break;
+		}
+		else if (menu == 0 && (inputUserPage == 'b' || inputUserPage == 'B')) {
+	//		diseaseData ();
+		}
+		else if (menu == 0 && (inputUserPage == 't' || inputUserPage == 'T')) {
+	//		diseaseData ();
+		}
+		else if (menu == 0 && (inputUserPage == 'x' || inputUserPage == 'X')) {
+			exitProgram ();
+			break;
+		}
+		else if (profile == 0 && (inputUserPage == 'u' || inputUserPage == 'U')) {
+			updateProfileUser();
+		}
+		else if (profile == 0 && (inputUserPage == 'd' || inputUserPage == 'D')) {
+			deletesProfileUser();
+		}
+		else if (profile == 0 && (inputUserPage == 'l' || inputUserPage == 'L')) {
+			strcpy(logReg.userId, "");
+			printBanner ();
+			break;
+		}
+		else {
+			FlushConsoleInputBuffer(GetStdHandle(STD_INPUT_HANDLE));
+		}
 	
-	gotoxy(_X + 28, _Y + 26);
+	}
 	
-	scanf (" %c", &inputUserPage); fflush (stdin);
-//    inputUserPage = getch ();
-	system ("cls");
-	if (inputUserPage == 'p' || inputUserPage == 'P') {
-		profile ();
-	}
-	else if (inputUserPage == 'm' || inputUserPage == 'M') {
-		medicalCheckUp ();
-	}
-	else if (inputUserPage == 's' || inputUserPage == 'S') {
-		loginUser ();
-	}
-	else if (inputUserPage == 'x' || inputUserPage == 'X') {
-		exitProgram ();
-	}
-	else {
-		FlushConsoleInputBuffer(GetStdHandle(STD_INPUT_HANDLE));
-		userPage();
-	}
+//	system ("cls");
+//	
+//	layoutXY (3);
+//	
+//	gotoxy(_X + 28, _Y + 26);
+//	
+//	scanf (" %c", &inputUserPage); fflush (stdin);
+////    inputUserPage = getch ();
+//	system ("cls");
+//	if (inputUserPage == 'p' || inputUserPage == 'P') {
+//		profile ();
+//	}
+//	else if (inputUserPage == 'm' || inputUserPage == 'M') {
+//		medicalCheckUp ();
+//	}
+//	else if (inputUserPage == 's' || inputUserPage == 'S') {
+//		loginUser ();
+//	}
+//	else if (inputUserPage == 'x' || inputUserPage == 'X') {
+//		exitProgram ();
+//	}
+//	else {
+//		FlushConsoleInputBuffer(GetStdHandle(STD_INPUT_HANDLE));
+//		userPage();
+//	}
 	
 //	menu:
 //		headerLayout(" ", "\t", "Main Menu Page\t");
@@ -67,59 +197,59 @@ void medicalCheckUp () {
 //    printf("Penyakit anda : %s", diseaseResult);
 }
 
-void profile() {
-	char inputProfile;
-	
-	profile:
-		headerLayout(" ", "\t", "Profile Page\t");
-		line(0);
-		profileUser();
-		line(0);
-		lineText('o', "\t\t\t\t1. Update\t\t\t\t\t");
-		lineText('o', "\t\t\t\t2. Delete\t\t\t\t\t");
-		lineText('o', "\t\t\t\t3. Logout\t\t\t\t\t");
-		lineText('o', "\t\t\t\t4. Back\t\t\t\t\t\t");
-		line(0);
-		inputType(&inputProfile);
-		
-		switch (inputProfile) {
-//			case '0':
+//void profile() {
+//	char inputProfile;
+//	
+//	profile:
+//		headerLayout(" ", "\t", "Profile Page\t");
+//		line(0);
+//		profileUser();
+//		line(0);
+//		lineText('o', "\t\t\t\t1. Update\t\t\t\t\t");
+//		lineText('o', "\t\t\t\t2. Delete\t\t\t\t\t");
+//		lineText('o', "\t\t\t\t3. Logout\t\t\t\t\t");
+//		lineText('o', "\t\t\t\t4. Back\t\t\t\t\t\t");
+//		line(0);
+//		inputType(&inputProfile);
+//		
+//		switch (inputProfile) {
+////			case '0':
+////				if (strcmp(logReg.userAdmin, "1") == 0) {
+////					return adminPage();
+////				}
+////				else {
+////					return menu();
+////				}
+////				break;
+//				
+//			case '1':
+//				updateProfileUser();
+//				break;
+//				
+//			case '2':
+//				deletesProfileUser();
+//				break;
+//				
+//			case '3':
+//				strcpy(logReg.userId, "");
+//				printBanner ();
+//				break;
+//				
+//			case '4':
 //				if (strcmp(logReg.userAdmin, "1") == 0) {
-//					return adminPage();
+//					adminPage();
 //				}
 //				else {
-//					return menu();
+//					userPage ();
 //				}
 //				break;
-				
-			case '1':
-				updateProfileUser();
-				break;
-				
-			case '2':
-				deletesProfileUser();
-				break;
-				
-			case '3':
-				strcpy(logReg.userId, "");
-				printBanner ();
-				break;
-				
-			case '4':
-				if (strcmp(logReg.userAdmin, "1") == 0) {
-					adminPage();
-				}
-				else {
-					userPage ();
-				}
-				break;
-				
-			default:
-				errorMessage();
-				goto profile;
-				break;
-		}
-}
+//				
+//			default:
+//				errorMessage();
+//				goto profile;
+//				break;
+//		}
+//}
 
 void exitProgram() {
 	char inputExit;
