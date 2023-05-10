@@ -6,6 +6,5 @@ int main(){
 	
     // Make the console windows become full-size
 	ShowWindow(GetConsoleWindow(), SW_MAXIMIZE);
-	
 	printBanner ();
 }

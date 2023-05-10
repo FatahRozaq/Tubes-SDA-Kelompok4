@@ -64,8 +64,7 @@ void loginRegisterUser () {
 }
 
 void loginUser () {
-	char str[1000]; char *pos; char *pas;
-	
+	char str[1000]; char *pos; char *pas, continueText [50]= "Press any key to continue ...";
 	int _X = getScreenWidth() / 2 - 31;
 	int _Y = getScreenHeight() / 2 - 9;
 	
@@ -115,18 +114,22 @@ void loginUser () {
 	    }
 	}
     strcpy (logReg.password, password);
-    
-	gotoxy(_X + 16, _Y + 19);
-	printf("%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c\n",201,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,187);
-	gotoxy(_X + 16, _Y + 20);
-	printf("%c       Click c to continue       %c\n",186,186);
-	gotoxy(_X + 16, _Y + 21);
-	printf("%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c\n",200,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,188);
 	
 	file = fopen("user.txt", "r");
 	if (file == NULL){
 		fclose(file);
-		lineText('b', "\t\t\t\tUser Not Found!\t\t\t\t\t");
+		gotoxy(_X + 16, _Y + 19);
+		printf("     User Not Found!     \n");
+		
+		gotoxy(_X + 16, _Y + 25);
+		for(i = 0; continueText[i] != '\0'; i ++)
+		{
+		    printf ("%c", continueText[i]);
+		    Sleep(50);
+		}
+		getch ();
+		
+//		lineText('b', "\t\t\t\tUser Not Found!\t\t\t\t\t");
         file = fopen("user.txt","a");
         fclose(file);
         file = fopen("user.txt","r");
@@ -149,7 +152,22 @@ void loginUser () {
 		}
 	}
 	fclose(file);
-	lineText('b', "\t\t\tThe account doesn't exist!\t\t\t\t");
+	
+	gotoxy(_X + 16, _Y + 19);
+	printf("     The account doesn't exist!     \n");
+	
+	gotoxy(_X + 16, _Y + 25);
+	for(i = 0; continueText[i] != '\0'; i ++)
+	{
+	    printf ("%c", continueText[i]);
+	    Sleep(50);
+	}
+	getch ();
+	
+//	gotoxy(_X + 16, _Y + 25);
+//	printf("     Press any key to continue ...");
+//	getch ();
+//	lineText('b', "\t\t\tThe account doesn't exist!\t\t\t\t");
 	return loginUser ();
 	
 	coba:
@@ -159,27 +177,48 @@ void loginUser () {
 	        pas = strstr(str, logReg.password);
 			if (pos != NULL && pas != NULL){
 				fclose(file);
-				lineText('b', "\t\t\t\tSuccessfully Logged in!\t\t\t\t");
+//				lineText('b', "\t\t\t\tSuccessfully Logged in!\t\t\t\t");
+				
+				gotoxy(_X + 16, _Y + 19);
+				printf("     Successfully Logged in!     \n");
+				
+				gotoxy(_X + 16, _Y + 25);
+				for(i = 0; continueText[i] != '\0'; i ++)
+				{
+				    printf ("%c", continueText[i]);
+				    Sleep(50);
+				}
+				getch ();
+				
 				if(strcmp(dataUser.userAdmin, "1") == 0) {
 					adminPage();
 				}
 				else {
-					menu();	
+					userPage();	
 				}
 			}
 		}
 		if (pos == NULL && pas == NULL) {
 			fclose(file);
-			lineText('b', "\t\t\t\tUser Not Found!\t\t\t\t\t");
+			gotoxy(_X + 16, _Y + 19);
+			printf("     User Not Found!     \n");
+			
+			gotoxy(_X + 16, _Y + 25);
+			for(i = 0; continueText[i] != '\0'; i ++)
+			{
+			    printf ("%c", continueText[i]);
+			    Sleep(50);
+			}
+			getch ();
+			
+//			lineText('b', "\t\t\t\tUser Not Found!\t\t\t\t\t");
 			loginUser ();
 		}
 }
 
 void registerUser () {
-	char checkPassword = '0', confirmPassword[20], checkEmail[50];
-	char str[1000]; char *pos; char *pas;
-	int _X = getScreenWidth() / 2 - 31;
-	int _Y = getScreenHeight() / 2 - 16;
+	char checkPassword = '0', confirmPassword[20], checkEmail[50], str[1000]; char *pos; char *pas, continueText [50]= "Press any key to continue ...";
+	int _X = getScreenWidth() / 2 - 31, _Y = getScreenHeight() / 2 - 16, i, j;
 
 	system("cls");
 	
@@ -215,7 +254,18 @@ void registerUser () {
 		gotoxy(_X +22, _Y + 7);
 		scanf("%[^\n]s", &logReg.user);fflush(stdin);
 		if (strlen(logReg.user) > 13 ||  strlen(logReg.user) < 6) {
-			lineText('b', "\t\t\tUsername consists of 6 - 13 characters!\t\t\t");
+			gotoxy(_X + 12, _Y + 27);
+			printf("Username consists of 6 - 13 characters!     \n");
+			
+			gotoxy(_X + 16, _Y + 32);
+			for(i = 0; continueText[i] != '\0'; i ++)
+			{
+			    printf ("%c", continueText[i]);
+			    Sleep(1);
+			}
+			getch ();
+			
+//			lineText('b', "\t\t\tUsername consists of 6 - 13 characters!\t\t\t");
 			goto registerUser;
 		}
 		
@@ -224,7 +274,19 @@ void registerUser () {
 		gotoxy(_X +22, _Y + 11);
 		scanf("%[^\n]s", &logReg.userId);fflush(stdin);
 		if (strlen(logReg.userId) > 13 ||  strlen(logReg.userId) < 6) {
-			lineText('b', "\t\t\tUser ID consists of 6 - 13 characters!\t\t\t");
+			
+			gotoxy(_X + 12, _Y + 27);
+			printf("User ID consists of 6 - 13 characters!     \n");
+			
+			gotoxy(_X + 16, _Y + 32);
+			for(i = 0; continueText[i] != '\0'; i ++)
+			{
+			    printf ("%c", continueText[i]);
+			    Sleep(1);
+			}
+			getch ();
+			
+//			lineText('b', "\t\t\tUser ID consists of 6 - 13 characters!\t\t\t");
 			system ("cls");	
 			layoutXY (2);
 			gotoxy(_X +22, _Y + 7);
@@ -237,7 +299,19 @@ void registerUser () {
 	while (!feof(file)){
 		fscanf(file,"%[^_]_%[^_]_%[^_]_%[^_]_%[^\n]\n",&dataUser.user, &dataUser.userId, dataUser.email, dataUser.password, dataUser.userAdmin);fflush(stdin);
 		if ((strcmp(check.user, dataUser.user) == 0 && strcmp(check.user, dataUser.userId) != 0 && strcmp(check.user, dataUser.email) != 0 && strcmp(check.user, dataUser.password) != 0) || (strcmp(check.userId, dataUser.user) != 0 && strcmp(check.userId, dataUser.userId) == 0 && strcmp(check.userId, dataUser.email) != 0 && strcmp(check.userId, dataUser.password) != 0)) {
-			lineText('b', "\t\t\tThe account is already exist!\t\t\t\t");
+			
+			gotoxy(_X + 12, _Y + 27);
+			printf("   The account is already exist!     \n");
+			
+			gotoxy(_X + 16, _Y + 32);
+			for(i = 0; continueText[i] != '\0'; i ++)
+			{
+			    printf ("%c", continueText[i]);
+			    Sleep(1);
+			}
+			getch ();
+			
+//			lineText('b', "\t\t\tThe account is already exist!\t\t\t\t");
 			registerUser();
 		}
 	}
@@ -247,7 +321,19 @@ void registerUser () {
 		gotoxy(_X +22, _Y + 15);
 		scanf("%[^\n]s", &checkEmail);fflush(stdin);
 		if (strlen(checkEmail) > 13 ||  strlen(checkEmail) < 6) {
-			lineText('b', "\t\t\tEmail consists of 6 - 13 characters!\t\t\t");
+			
+			gotoxy(_X + 12, _Y + 27);
+			printf("Email consists of 6 - 13 characters!     \n");
+			
+			gotoxy(_X + 16, _Y + 32);
+			for(i = 0; continueText[i] != '\0'; i ++)
+			{
+			    printf ("%c", continueText[i]);
+			    Sleep(1);
+			}
+			getch ();
+			
+//			lineText('b', "\t\t\tEmail consists of 6 - 13 characters!\t\t\t");
 			system ("cls");	
 			layoutXY (2);
 			gotoxy(_X +22, _Y + 7);
@@ -258,14 +344,26 @@ void registerUser () {
 		}
 		
 		if(strchr(checkEmail, '@' ) == NULL){
-				lineText('b', "\t\t\t\tEmail must contain '@'\t\t\t\t");
-				system ("cls");	
-				layoutXY (2);
-				gotoxy(_X +22, _Y + 7);
-				printf ("%s", logReg.user);
-				gotoxy(_X +22, _Y + 11);
-				printf ("%s", logReg.userId);
-				goto regEmail;
+			
+			gotoxy(_X + 16, _Y + 27);
+			printf("    Email must contain '@'     \n");
+			
+			gotoxy(_X + 16, _Y + 32);
+			for(i = 0; continueText[i] != '\0'; i ++)
+			{
+			    printf ("%c", continueText[i]);
+			    Sleep(1);
+			}
+			getch ();
+			
+//			lineText('b', "\t\t\t\tEmail must contain '@'\t\t\t\t");
+			system ("cls");	
+			layoutXY (2);
+			gotoxy(_X +22, _Y + 7);
+			printf ("%s", logReg.user);
+			gotoxy(_X +22, _Y + 11);
+			printf ("%s", logReg.userId);
+			goto regEmail;
 		}
 		strcpy(logReg.email, checkEmail);
 		
@@ -298,7 +396,19 @@ void registerUser () {
 		    
 //			scanf("%[^\n]s", &logReg.password);fflush(stdin);
 			if (strlen(logReg.password) > 13 ||  strlen(logReg.password) < 6) {
-				lineText('b', "\t\t\tPassword consists of 6 - 13 characters!\t\t\t");
+				
+				gotoxy(_X + 12, _Y + 27);
+				printf("Password consists of 6 - 13 characters!     \n");
+				
+				gotoxy(_X + 16, _Y + 32);
+				for(i = 0; continueText[i] != '\0'; i ++)
+				{
+				    printf ("%c", continueText[i]);
+				    Sleep(1);
+				}
+				getch ();
+				
+//				lineText('b', "\t\t\tPassword consists of 6 - 13 characters!\t\t\t");
 				system ("cls");	
 				layoutXY (2);
 				gotoxy(_X +22, _Y + 7);
@@ -333,11 +443,35 @@ void registerUser () {
 //			scanf("%[^\n]s", &confirmPassword);fflush(stdin);
 			if (strcmp(logReg.password, confirmPassword) == 0) {
 				checkPassword = '1';
-				lineText('b', "\t\t\tSuccessfully Registered in!\t\t\t\t");
+				
+				gotoxy(_X + 16, _Y + 27);
+				printf("Successfully Registered in!     \n");
+				
+				gotoxy(_X + 16, _Y + 32);
+				for(i = 0; continueText[i] != '\0'; i ++)
+				{
+				    printf ("%c", continueText[i]);
+				    Sleep(1);
+				}
+				getch ();
+				
+//				lineText('b', "\t\t\tSuccessfully Registered in!\t\t\t\t");
 			}
 			else
 			{
-				lineText('b', "\t\t\t\tPasswords are not match\t\t\t\t");
+				
+				gotoxy(_X + 16, _Y + 27);
+				printf("Passwords are not match     \n");
+				
+				gotoxy(_X + 16, _Y + 32);
+				for(i = 0; continueText[i] != '\0'; i ++)
+				{
+				    printf ("%c", continueText[i]);
+				    Sleep(1);
+				}
+				getch ();
+				
+//				lineText('b', "\t\t\t\tPasswords are not match!\t\t\t\t");
 				system ("cls");	
 				layoutXY (2);
 				gotoxy(_X +22, _Y + 7);
@@ -349,14 +483,7 @@ void registerUser () {
 				goto regPassword;
 			}
 	}
-	
-	gotoxy(_X +15, _Y + 26);
-	printf("%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c\n",201,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,187);
-	gotoxy(_X +15, _Y + 27);
-	printf("%c    Click any key to continue    %c\n",186,186);
-	gotoxy(_X +15, _Y + 28);
-	printf("%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c\n",200,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,188);
-	
+		
     fprintf(file, "%s_%s_%s_%s_%s\n", logReg.user, logReg.userId, logReg.email, logReg.password, logReg.userAdmin);
     fclose(file);
     getch();
@@ -365,7 +492,7 @@ void registerUser () {
     	adminPage();
 	}
 	else {
-    	menu();
+    	userPage();
 	}
 }
 

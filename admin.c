@@ -193,7 +193,7 @@ void updateAdmin(){
 		}
 
 	fclose(file);
-		file=fopen("user.txt","w");
+	file=fopen("user.txt","w");
 	for(i=0;i<index;i++){
 		fprintf(file,"%s_%s_%s_%s_%s\n",edit[i].user,edit[i].userId,edit[i].email,edit[i].password,edit[i].userAdmin);
 	}
@@ -214,10 +214,10 @@ void deleteAdmin(){
 	while (!feof(file)){
 		fscanf(file,"%[^_]_%[^_]_%[^_]_%[^_]_%[^\n]\n",&deletes[index].user,&deletes[index].userId,&deletes[index].email,&deletes[index].password,&deletes[index].userAdmin);
 		fflush(stdin);
-			if(strcmp(deletes[index].userId, check.userId) != 0){
-				index++;
-			}
+		if(strcmp(deletes[index].userId, check.userId) != 0){
+			index++;
 		}
+	}
 		
 	fclose(file);
 		file=fopen("user.txt","w");
