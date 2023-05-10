@@ -11,6 +11,7 @@
 #define info(P) (P)->info
 #define next(P) (P)->next
 #define prev(P) (P)->prev
+
 typedef char* infotype;			// variable bentukan bernama infotype dengan tipe char*
 typedef struct tElmtlist *alamat; // variable pointer yang akan menunjuk ke alamat yang nilainya bernilai tElmtlist
 
@@ -42,6 +43,9 @@ User dataUser, logReg, check;
 //layout.c
 void line(int lineType);
 void lineText(char textType, char lineName[50]);
+void gotoxy(int x, int y);
+int getScreenWidth();
+int getScreenHeight();
 void layoutXY(int layoutType);
 void printBanner ();
 void printASCIIforBanner(char ch);
@@ -66,13 +70,10 @@ void updateAdmin ();
 void deleteAdmin ();
 
 //user.c
-void menu ();
+void userPage ();
 void medicalCheckUp ();
 void profile ();
 void exitProgram ();
-void gotoxy(int x, int y);
-int getScreenWidth();
-int getScreenHeight();
 
 //body.c
 boolean isEmpty (address root);
@@ -80,6 +81,6 @@ Node* createNode (char question[]);
 void deleteTree (Node *root);
 void printNode (char leaf[]);
 char* startAnalysis (Node *root);
-void medicalCheckUpResults ();
+void medicalCheckUpResults (char* diseaseResult);
 void medicalCheckUpRecommendation ();
 void medicalCheckUpDisclaimer ();

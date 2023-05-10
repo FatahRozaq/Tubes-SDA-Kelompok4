@@ -16,67 +16,6 @@ Node* createNode(char question[]) {
     return newNode;
 }
 
-alamat createlist(char* huruf)
-{
-	alamat D;
-	D = (address)malloc(sizeof(ElmtList)); // alokasi memori sebesar D
-	info(D) = (char*)malloc((strlen(huruf)+1)*sizeof(char)); // alokasi memori sebesar string huruf yang akan disimpan
-	strcpy(info(D), huruf); // salin string ke dalam node
-	next(D) = Nil;						   // membuat list menunjuk ke nil
-	prev(D) = Nil;
-	return D;
-}
-
-void insLast(alamat *P, alamat *Last){
-	prev(*P) = *Last;
-	next(*Last) = *P;
-	*Last = *P;
-}
-
-void viewAsc(alamat First){
-	alamat P;
-	int i;
-	i=1;
-	printf("Traversal Asc :\n");
-	P = First;
-	while (P != Nil)
-	{
-		printf("%d. %s \n", i, info(P));
-		P = next(P);
-		i++;
-	}
-}
-
-void inputPertanyaan(){
-	char input[100];
-	alamat P,First,Last;
-	char choice;
-	
-	First=Nil;
-	Last=Nil;
-	
-	choice = 'y';
-	do{
-		printf("\nInput : ");
-		scanf("\n%[^\n]", input); // membaca input string dari pengguna
-		
-		if (First == Nil){
-			P = createlist(input);
-			First = P;
-			Last = P;
-		}
-		else{
-			P = createlist(input);
-			insLast(&P,&Last);
-		}
-		
-		printf("\nApakah anda akan input lagi?");
-		scanf("\n%c",&choice);
-	}while(choice=='y'||choice=='Y');
-	
-	viewAsc(First);
-}
-
 void deleteTree(Node *root) {
     if (root == NULL) return;
     deleteTree(root->yes);
@@ -148,13 +87,17 @@ char* startAnalysis(Node *root) {
     
 }
 
-
-void medicalCheckUpResults () {
+void medicalCheckUpResults (char* diseaseResult) {
 	//hasil cek kesehatan berdasarkan hasil dari startAnalysis
+    printf("Penyakit anda : %s", diseaseResult);
 	
 	//data hasil cek kesehatan yang telah diinputkan pengecek
 	
 	//rujukan yang didapat sesuai dengan hasil cek kesehatan
+	
+	medicalCheckUpRecommendation ();
+	
+	medicalCheckUpDisclaimer();
 }
 
 void medicalCheckUpRecommendation () {
@@ -164,6 +107,6 @@ void medicalCheckUpRecommendation () {
 void medicalCheckUpDisclaimer () {
 	//disclaimer
 	
-	printf("This medical check up tool is not a substitute for a medical consultation. Always consult your doctor before deciding on treatment for an illness. This program does not provide medical advice, diagnosis, or treatment.");
+	printf("\n\nThis medical check up tool is not a substitute for a medical consultation. Always consult your doctor before deciding on treatment for an illness. This program does not provide medical advice, diagnosis, or treatment.");
 
 }

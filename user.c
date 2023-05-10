@@ -1,90 +1,48 @@
 #include "header.h"
 
-void gotoxy(int x, int y) {
-    COORD coord;
-     
-    coord.X = x;
-    coord.Y = y;
-     
-    SetConsoleCursorPosition(GetStdHandle(STD_OUTPUT_HANDLE), coord);
-}
-
-int getScreenWidth() {
-    CONSOLE_SCREEN_BUFFER_INFOEX _infoex = {0};
-    HANDLE handleOfConsoleOutput = NULL;
-
-    handleOfConsoleOutput = GetStdHandle(STD_OUTPUT_HANDLE);
-    _infoex.cbSize = sizeof(_infoex);
-    GetConsoleScreenBufferInfoEx(handleOfConsoleOutput, &_infoex);
-
-    return _infoex.srWindow.Right;
-}
-
-int getScreenHeight() {
-    CONSOLE_SCREEN_BUFFER_INFOEX _infoex = {0};
-    HANDLE handleOfConsoleOutput = NULL;
-
-    handleOfConsoleOutput = GetStdHandle(STD_OUTPUT_HANDLE);
-    _infoex.cbSize = sizeof(_infoex);
-    GetConsoleScreenBufferInfoEx(handleOfConsoleOutput, &_infoex);
-
-    return _infoex.srWindow.Bottom;
-}
-void menu() {
-	char inputMenu;
+void userPage () {
+	char inputUserPage;
+	int _X = getScreenWidth() / 2 - 70;
+	int _Y = getScreenHeight() / 2 - 16;
+	
 	system ("cls");
-	menu:
-		headerLayout(" ", "\t", "Main Menu Page\t");
-		line(0);
-		lineText('o', "\t\t\t\t1. Profile\t\t\t\t\t");
-		lineText('o', "\t\t\t\t2. Medical Check Up\t\t\t\t");
-		lineText('o', "\t\t\t\t3. Settings\t\t\t\t\t");
-		lineText('o', "\t\t\t\t4. Credits\t\t\t\t\t");
-		lineText('o', "\t\t\t\t5. History\t\t\t\t");
-		lineText('o', "\t\t\t\t6. Help\t\t\t\t\t\t");
-		lineText('o', "\t\t\t\t7. Exit\t\t\t\t\t\t");
-		line(0);
-		inputType(&inputMenu);
-		
-		switch(inputMenu) {
-			case '0':
-				exitProgram ();
-				break;
-				
-			case '1':
-				profile ();
-				break;
-				
-			case '2':
-				medicalCheckUp ();
-				break;
-				
-//			case '3':
-//				settings();
-//				break;
-				
-//			case '4':
-//				credits();
-//				break;
-				
-//			case '5':
-//				dataTransaction();
-//				break;
-				
-//			case '6':
-//				userHelp();
-//				break;
-				
-			case '7':
-				exitProgram();
-				break;	
-				
-			default:
-				errorMessage();
-				goto menu;
-				break;
-		}
-		
+	
+	layoutXY (3);
+	
+	gotoxy(_X + 28, _Y + 26);
+	
+	scanf (" %c", &inputUserPage); fflush (stdin);
+//    inputUserPage = getch ();
+	system ("cls");
+	if (inputUserPage == 'p' || inputUserPage == 'P') {
+		profile ();
+	}
+	else if (inputUserPage == 'm' || inputUserPage == 'M') {
+		medicalCheckUp ();
+	}
+	else if (inputUserPage == 's' || inputUserPage == 'S') {
+		loginUser ();
+	}
+	else if (inputUserPage == 'x' || inputUserPage == 'X') {
+		exitProgram ();
+	}
+	else {
+		FlushConsoleInputBuffer(GetStdHandle(STD_INPUT_HANDLE));
+		userPage();
+	}
+	
+//	menu:
+//		headerLayout(" ", "\t", "Main Menu Page\t");
+//		line(0);
+//		lineText('o', "\t\t\t\t1. Profile\t\t\t\t\t");
+//		lineText('o', "\t\t\t\t2. Medical Check Up\t\t\t\t");
+//		lineText('o', "\t\t\t\t3. Settings\t\t\t\t\t");
+//		lineText('o', "\t\t\t\t4. Credits\t\t\t\t\t");
+//		lineText('o', "\t\t\t\t5. History\t\t\t\t");
+//		lineText('o', "\t\t\t\t6. Help\t\t\t\t\t\t");
+//		lineText('o', "\t\t\t\t7. Exit\t\t\t\t\t\t");
+//		line(0);
+
 }
 
 void medicalCheckUp () {
@@ -101,9 +59,12 @@ void medicalCheckUp () {
     root->no->no = createNode("Apakah Anda merasa lelah? (y/n) ");
     root->no->no->yes = createNode("Anda menderita penyakit jantung bawaan.");
  
-    diseaseResult = startAnalysis(root);
+//    diseaseResult = startAnalysis(root);
     
-    printf("Penyakit anda : %s", diseaseResult);
+    medicalCheckUpResults (startAnalysis(root));
+    getch ();
+    userPage ();
+//    printf("Penyakit anda : %s", diseaseResult);
 }
 
 void profile() {
@@ -146,10 +107,10 @@ void profile() {
 				
 			case '4':
 				if (strcmp(logReg.userAdmin, "1") == 0) {
-					return adminPage();
+					adminPage();
 				}
 				else {
-					return menu();
+					userPage ();
 				}
 				break;
 				
@@ -188,7 +149,7 @@ void exitProgram() {
 					loginRegisterUser();
 				}
 				else {
-					menu();
+					userPage ();
 				}
 				break;
 				
