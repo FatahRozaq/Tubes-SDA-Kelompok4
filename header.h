@@ -76,7 +76,6 @@ void deleteAdmin ();
 //user.c
 void userPage ();
 void medicalCheckUp ();
-void exitProgram ();
 
 //body.c
 boolean isEmpty (address root);

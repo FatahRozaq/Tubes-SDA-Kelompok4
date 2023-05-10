@@ -359,7 +359,12 @@ char* startAnalysis(Node *root) {
 }
 
 void medicalCheckUpResults (char* diseaseResult) {
+	int _X = getScreenWidth() / 2 - 70, _Y = getScreenHeight() / 2 - 16;
+	system ("cls");
+	
+	layoutXY (6);
 	//hasil cek kesehatan berdasarkan hasil dari startAnalysis
+	gotoxy (_X + 40, _Y + 11);
     printf("Penyakit anda : %s", diseaseResult);
 	
 	//data hasil cek kesehatan yang telah diinputkan pengecek
@@ -372,14 +377,23 @@ void medicalCheckUpResults (char* diseaseResult) {
 }
 
 void medicalCheckUpRecommendation () {
+	int _X = getScreenWidth() / 2 - 70, _Y = getScreenHeight() / 2 - 16;
 	//rekomendasi hal-hal yang perlu dilakukan oleh pengecek
+	
+	gotoxy (_X + 40, _Y + 13);
+	printf (" REKOMENDASI\n");
 }
 
 void medicalCheckUpDisclaimer () {
 	int _X = getScreenWidth() / 2 - 70, _Y = getScreenHeight() / 2 - 16;
 	//disclaimer
-	printf("\n\nAlat Cek Risiko ini bukanlah pengganti konsultasi medis. Selalu konsultasi\n");
-	printf("ke dokter Anda sebelum memutuskan perawatan terkait sebuah penyakit.\n");
-	printf("Hello Sehat tidak memberikan saran medis, diagnosis, atau perawatan.");
+	gotoxy (_X + 40, _Y + 21);
+	printf (" DISCLAIMER\n");
+	gotoxy (_X + 40, _Y + 23);
+	printf ("Alat Cek Risiko ini bukanlah pengganti konsultasi medis. Selalu konsultasi\n");
+	gotoxy (_X + 40, _Y + 24);
+	printf ("ke dokter Anda sebelum memutuskan perawatan terkait sebuah penyakit.\n");
+	gotoxy (_X + 40, _Y + 25);
+	printf ("Program ini tidak memberikan saran medis, diagnosis, atau perawatan.");
 
 }
