@@ -16,6 +16,68 @@ Node* createNode(char question[]) {
     return newNode;
 }
 
+alamat createlist(char* huruf)
+{
+	alamat D;
+	D = (alamat)malloc(sizeof(ElmtList)); // alokasi memori sebesar D
+	info(D) = (char*)malloc((strlen(huruf)+1)*sizeof(char)); // alokasi memori sebesar string huruf yang akan disimpan
+	strcpy(info(D), huruf); // salin string ke dalam node
+	next(D) = Nil;						   // membuat list menunjuk ke nil
+	prev(D) = Nil;
+	return D;
+}
+
+void insLast(alamat *P, alamat *Last){
+	prev(*P) = *Last;
+	next(*Last) = *P;
+	*Last = *P;
+}
+
+void viewAsc(alamat First){
+	alamat P;
+	int i;
+	i=1;
+	printf("Traversal Asc :\n");
+	P = First;
+	while (P != Nil)
+	{
+		printf("%d. %s \n", i, info(P));
+		P = next(P);
+		i++;
+	}
+}
+
+alamat inputPertanyaan(){
+	char input[100];
+	alamat P,First,Last;
+	char choice;
+	
+	First=Nil;
+	Last=Nil;
+	
+	choice = 'y';
+	do{
+		printf("\nInput : ");
+		scanf("\n%[^\n]", input); // membaca input string dari pengguna
+		
+		if (First == Nil){
+			P = createlist(input);
+			First = P;
+			Last = P;
+		}
+		else{
+			P = createlist(input);
+			insLast(&P,&Last);
+		}
+		
+		printf("\nApakah anda akan input lagi?");
+		scanf("\n%c",&choice);
+	}while(choice=='y'||choice=='Y');
+	
+	viewAsc(First);
+	return First;
+}
+
 void deleteTree(Node *root) {
     if (root == NULL) return;
     deleteTree(root->yes);
@@ -45,6 +107,55 @@ void printTree(address node, int space) {
 
     printTree(node->no, space);
     printf("\n");
+}
+
+alamat searchPertanyaan(alamat First, int noPertanyaan){
+	int i;
+	alamat Q;
+	i=1;
+	Q=First;
+		while(info(Q)!=Nil&&i!=noPertanyaan){
+						Q=next(Q);
+						i++;
+					}
+	return Q;
+}
+
+void createTree(alamat First){
+	int pertanyaan;
+	alamat pointPertanyaan;
+	printf("\nMembuat modul penyakit :");
+	viewAsc(First);
+	printf("\n Pilih Pertanyaan yang menjadi Root:");
+	scanf("%d",&pertanyaan);
+	pointPertanyaan=searchPertanyaan(First,pertanyaan);
+	printf("\n%s", info(pointPertanyaan));
+}
+
+	void menuPertanyaan(alamat First){
+	system("cls");
+	int pilihan;
+	viewAsc(First);
+	
+	printf("\nPilihan :");
+	printf("\n1. Buat Modul Penyakit Berdasarkan Pertanyaan(Tree)");
+	printf("\n2. Tambahkan pertanyaan");
+	printf("\n3. Hapus pertanyaan");
+	printf("\n4. Edit pertanyaan\n");
+	scanf("%d",&pilihan);
+	
+	if(pilihan ==1){
+		createTree(First);
+	}
+	else if(pilihan == 2){
+		
+	}
+	else if(pilihan == 3){
+		
+	}
+	else if(pilihan == 4){
+		
+	}
 }
 
 //char* startAnalysis(Node *root) {
