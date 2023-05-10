@@ -37,8 +37,10 @@ void viewAsc(alamat First){
 	alamat P;
 	int i;
 	i=1;
-	printf("Traversal Asc :\n");
-	P = First;
+	if (First == Nil){
+		printf("Daftar Kosong");
+	}
+		P = First;
 	while (P != Nil)
 	{
 		printf("%d. %s \n", i, info(P));
@@ -47,34 +49,103 @@ void viewAsc(alamat First){
 	}
 }
 
-alamat inputPertanyaan(){
+void inputTanya(alamat *First,alamat *Last){
+	
 	char input[100];
-	alamat P,First,Last;
-	char choice;
-
-	First=Nil;
-	Last=Nil;
-
-	choice = 'y';
-	do{
-		printf("\nInput : ");
+	alamat P;
+		printf("\nMasukkan pertanyaan :");
 		scanf("\n%[^\n]", input); // membaca input string dari pengguna
-
-		if (First == Nil){
+		
+		if (*First == Nil){
 			P = createlist(input);
-			First = P;
-			Last = P;
+			*First = P;
+			*Last = P;
 		}
 		else{
 			P = createlist(input);
-			insLast(&P,&Last);
+			insLast(&P,Last);
 		}
+	
+}
+void inputDiagnosis(alamat *First,alamat *Last){
+	
+	char input[100];
+	alamat P;
+		printf("\nMasukkan Diagnosis :");
+		scanf("\n%[^\n]", input); // membaca input string dari pengguna
+		
+		if (*First == Nil){
+			P = createlist(input);
+			*First = P;
+			*Last = P;
+		}
+		else{
+			P = createlist(input);
+			insLast(&P,Last);
+		}
+	
+}
 
-		printf("\nApakah anda akan input lagi?");
+void menuPilihanInput(){
+	printf("\n1. Input Pertanyaan");
+	printf("\n2. Input Diagnosis");
+	printf("\n3. Daftar Penyakit dan Diagnosis");
+	printf("\nPilihan : ");
+}
+
+alamat membangunModul(){
+	char input[100],jenisPenyakit[30];
+	alamat P,D,First,Last,pPenyakit,pDiagnosis;
+	alamat lastPenyakit,lastDiagnosis;
+	char choice;
+	int pilih;
+	lastPenyakit=Nil;
+	lastDiagnosis=Nil;
+	pPenyakit = Nil;
+	pDiagnosis = Nil;
+	First=Nil;
+	Last=Nil;
+	printf("\nMasukkan jenis penyakit :");
+	scanf("%[^\n]",&jenisPenyakit);
+	
+	
+
+	
+	choice = 'y';
+	do{
+	system("cls");
+	printf("\nJenis Penyakit : %s", jenisPenyakit);
+	
+	menuPilihanInput();
+	scanf("%d",&pilih);
+	
+	if(pilih == 1){
+		inputTanya(&pPenyakit,&lastPenyakit);
+	}
+	
+	else if (pilih == 2){
+		inputDiagnosis(&pDiagnosis,&lastDiagnosis);
+	}
+	
+	else if (pilih == 3){
+		printf("\nPenyakit : \n");
+		viewAsc(pPenyakit);
+		printf("\nDiagnosis : \n");
+		viewAsc(pDiagnosis);
+	}
+		
+		
+		
+		printf("\nKembali ke menu sebelumnya?");
 		scanf("\n%c",&choice);
 	}while(choice=='y'||choice=='Y');
-
+	
 	viewAsc(First);
+	P=First;
+	while(P!=Nil){
+	//	simpanPertanyaan(info(P));
+		P=next(P);
+	}
 	return First;
 }
 
