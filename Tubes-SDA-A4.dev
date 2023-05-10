@@ -32,7 +32,7 @@ CompilerSettings=0000000000000000000000000
 <<<<<<< HEAD
 UnitCount=8
 =======
-UnitCount=7
+UnitCount=9
 >>>>>>> 30ab71c4590f66aace66b60d87d3dd05b4390b4d
 
 [VersionInfo]
@@ -73,11 +73,12 @@ Link=1
 Priority=1000
 OverrideBuildCmd=0
 BuildCmd=
-
 <<<<<<< HEAD
+
 [Unit3]
 FileName=boolean.h
 =======
+
 [Unit4]
 FileName=layout.c
 >>>>>>> 30ab71c4590f66aace66b60d87d3dd05b4390b4d
@@ -88,11 +89,19 @@ Link=1
 Priority=1000
 OverrideBuildCmd=0
 BuildCmd=
-
 <<<<<<< HEAD
+
 [Unit4]
 FileName=header.h
 =======
+CompileCpp=0
+Folder=
+Compile=1
+Link=1
+Priority=1000
+OverrideBuildCmd=0
+BuildCmd=
+
 [Unit5]
 FileName=loginRegister.c
 >>>>>>> 30ab71c4590f66aace66b60d87d3dd05b4390b4d
@@ -103,11 +112,19 @@ Link=1
 Priority=1000
 OverrideBuildCmd=0
 BuildCmd=
-
 <<<<<<< HEAD
+
 [Unit5]
 FileName=layout.c
 =======
+CompileCpp=0
+Folder=
+Compile=1
+Link=1
+Priority=1000
+OverrideBuildCmd=0
+BuildCmd=
+
 [Unit6]
 FileName=main.c
 >>>>>>> 30ab71c4590f66aace66b60d87d3dd05b4390b4d
@@ -118,11 +135,19 @@ Link=1
 Priority=1000
 OverrideBuildCmd=0
 BuildCmd=
-
 <<<<<<< HEAD
+
 [Unit6]
 FileName=loginRegister.c
 =======
+CompileCpp=0
+Folder=
+Compile=1
+Link=1
+Priority=1000
+OverrideBuildCmd=0
+BuildCmd=
+
 [Unit7]
 FileName=user.c
 >>>>>>> 30ab71c4590f66aace66b60d87d3dd05b4390b4d
@@ -133,11 +158,19 @@ Link=1
 Priority=1000
 OverrideBuildCmd=0
 BuildCmd=
-
 <<<<<<< HEAD
+
 [Unit7]
 FileName=main.c
 =======
+CompileCpp=0
+Folder=
+Compile=1
+Link=1
+Priority=1000
+OverrideBuildCmd=0
+BuildCmd=
+
 [Unit8]
 FileName=user.c
 >>>>>>> 30ab71c4590f66aace66b60d87d3dd05b4390b4d
@@ -148,14 +181,32 @@ Link=1
 Priority=1000
 OverrideBuildCmd=0
 BuildCmd=
-
 <<<<<<< HEAD
+
 [Unit8]
 FileName=user.c
 =======
+CompileCpp=0
+Folder=
+Compile=1
+Link=1
+Priority=1000
+OverrideBuildCmd=0
+BuildCmd=
+
 [Unit3]
 FileName=header.h
 >>>>>>> 30ab71c4590f66aace66b60d87d3dd05b4390b4d
+CompileCpp=0
+Folder=
+Compile=1
+Link=1
+Priority=1000
+OverrideBuildCmd=0
+BuildCmd=
+
+[Unit9]
+FileName=karakterPenyakit.c
 CompileCpp=0
 Folder=
 Compile=1

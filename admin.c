@@ -16,9 +16,9 @@ void adminPage(){
 	line(0);
 	
 	switch(inputAdminPage){
-//		case '0':
-//			exitProgram();
-//			break;
+		case '0':
+			karakteristikPenyakit();
+			break;
 			
 		case '1':
 			profile();

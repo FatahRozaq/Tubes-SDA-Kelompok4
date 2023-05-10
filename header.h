@@ -13,6 +13,7 @@
 #define prev(P) (P)->prev
 typedef char* infotype;			// variable bentukan bernama infotype dengan tipe char*
 typedef struct tElmtlist *alamat; // variable pointer yang akan menunjuk ke alamat yang nilainya bernilai tElmtlist
+typedef struct tKarakterPenyakit *addressKarakterPenyakit;
 
 typedef struct tElmtlist
 {
@@ -29,6 +30,13 @@ typedef struct{
 			password[50],
 			userAdmin[50];
 } User;
+
+typedef struct tKarakterPenyakit {
+    int id;
+    char namaPenyakit[50];
+    char karakteristik[100];
+    addressKarakterPenyakit next;
+} karakterPenyakit;
 
 typedef struct Node *address;
 typedef struct Node {
@@ -83,3 +91,12 @@ char* startAnalysis (Node *root);
 void medicalCheckUpResults ();
 void medicalCheckUpRecommendation ();
 void medicalCheckUpDisclaimer ();
+
+//karakterPenyakit
+void karakteristikPenyakit();
+void saveList(addressKarakterPenyakit head, char* filename);
+addressKarakterPenyakit findNode(addressKarakterPenyakit head, int id);
+void deleteNode(addressKarakterPenyakit* headRef, int id);
+void editNode(addressKarakterPenyakit head, int id);
+
+
