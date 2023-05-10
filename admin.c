@@ -13,7 +13,6 @@ void adminPage(){
 		gotoxy(_X + 28, _Y + 26);
 		
 		scanf (" %c", &inputAdminPage); fflush (stdin);
-	//    inputUserPage = getch ();
 		if (inputAdminPage == 'm' || inputAdminPage == 'M') {
 			if (menu == 1) {
 				Menu:
@@ -68,8 +67,6 @@ void adminPage(){
 						printf("%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c\n",201,205,205,205,205,205 ,205,205,205,205,205,205, 205,205,205,205, 187);
 						gotoxy(_X + 141, _Y + 2);
 						printf("%c", 186);
-//						gotoxy(_X + 125, _Y + 3);
-//						printf("%c               %c", 186, 186);
 						gotoxy(_X + 125, _Y + 3);
 						printf("%c %s ", 186, dataUser.user);
 						gotoxy(_X + 141, _Y + 3);
@@ -161,7 +158,8 @@ void userData(){
 			
 			if ((file=fopen("user.txt", "a+")) == NULL)
 			{
-				lineText('a', "\t\t\t\tFile cannot be open!\t\t\t\t");
+				gotoxy(_X + 12, _Y + 27);
+				printf("          File cannot be open!        \n");
 				exit(1);
 			}
 			gotoxy (_X + 40, _Y + 11);
@@ -227,8 +225,6 @@ void userData(){
 							printf("%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c\n",201,205,205,205,205,205 ,205,205,205,205,205,205, 205,205,205,205, 187);
 							gotoxy(_X + 141, _Y + 2);
 							printf("%c", 186);
-	//						gotoxy(_X + 125, _Y + 3);
-	//						printf("%c               %c", 186, 186);
 							gotoxy(_X + 125, _Y + 3);
 							printf("%c %s ", 186, dataUser.user);
 							gotoxy(_X + 141, _Y + 3);
@@ -334,8 +330,6 @@ void updateAdmin(){
 					printf ("  Update Profile");
 					gotoxy(_X +22, _Y + 7);
 					scanf("%[^\n]s", &edit[index].user);fflush(stdin);
-//					lineText('i', "Update Username");
-//					scanf("%[^\n]",&edit[index].user);fflush(stdin);
 					if (strlen(edit[index].user) > 13 ||  strlen(edit[index].user) < 6) {
 
 						gotoxy(_X + 12, _Y + 27);
@@ -348,7 +342,6 @@ void updateAdmin(){
 						    Sleep(1);
 						}
 						getch ();
-//						errorMessage();
 						goto updateProfileUserUsername;
 					}
 					
@@ -356,8 +349,6 @@ void updateAdmin(){
 					
 					gotoxy(_X +22, _Y + 11);
 					scanf("%[^\n]s", &checkId);fflush(stdin);
-//					lineText('i', "Update User ID");
-//					scanf("%s",&checkId);fflush(stdin);
 					if (strlen(checkId) > 13 ||  strlen(checkId) < 6) {
 							
 						gotoxy(_X + 12, _Y + 27);
@@ -370,7 +361,6 @@ void updateAdmin(){
 						    Sleep(1);
 						}
 						getch ();
-//						errorMessage();
 						
 						system ("cls");	
 						layoutXY (2);
@@ -404,7 +394,6 @@ void updateAdmin(){
 							printf ("  Update Profile");
 							gotoxy(_X +22, _Y + 7);
 							printf ("%s", edit[index].user);
-//							lineText('a', "\t\t\tThe User ID is already exist!\t\t\t\t");
 							goto updateProfileUserId;
 							break;
 						}
@@ -413,21 +402,10 @@ void updateAdmin(){
 						
 					strcpy(edit[index].userId, checkId);
 					
-//					strcpy(check.user, edit[index].user);
-//					strcpy(check.userId, edit[index].userId);
-//					
-//					if ((strcmp(check.user, dataUser.user) == 0 && strcmp(check.user, dataUser.userId) != 0 && strcmp(check.user, dataUser.email) != 0 && strcmp(check.user, dataUser.password) != 0) || (strcmp(check.userId, dataUser.user) != 0 && strcmp(check.userId, dataUser.userId) == 0 && strcmp(check.userId, dataUser.email) != 0 && strcmp(check.userId, dataUser.password) != 0)) {
-//						lineText('a', "\t\t\tThe account is already exist!\t\t\t\t");
-//						fclose(file);
-//						goto updateProfileUser;
-//					}
-					
 				updateProfileUserEmail:
 					
 					gotoxy(_X +22, _Y + 15);
 					scanf("%[^\n]s", &checkEmail);fflush(stdin);
-//					lineText('i', "Update Email");
-//					scanf("%s",&edit[index].email);fflush(stdin);
 					if (strlen(checkEmail) > 13 ||  strlen(checkEmail) < 6) {
 						
 						gotoxy(_X + 12, _Y + 27);
@@ -449,7 +427,6 @@ void updateAdmin(){
 						printf ("%s", edit[index].user);
 						gotoxy(_X +22, _Y + 11);
 						printf ("%s", edit[index].userId);
-//						errorMessage();
 						goto updateProfileUserEmail;
 					}
 					
@@ -466,7 +443,6 @@ void updateAdmin(){
 						}
 						getch ();
 						
-			//			lineText('b', "\t\t\t\tEmail must contain '@'\t\t\t\t");
 						system ("cls");	
 						layoutXY (2);
 						gotoxy(_X + 25, _Y + 3);
@@ -489,11 +465,11 @@ void updateAdmin(){
 				
 					while (1) {
 				        ch = getch();
-				        if (ch == '\r') {  // if Enter key is pressed
+				        if (ch == '\r') {
 					        edit[index].password[k] = '\0';
 					        break;
 				        } 
-						else if (ch == '\b' && i > 0) {  // if Backspace key is pressed
+						else if (ch == '\b' && i > 0) {
 					        k--;
 					        printf("\b \b");
 				        }
@@ -503,8 +479,6 @@ void updateAdmin(){
 					        printf("*");
 					    }
 					}
-//					lineText('i', "Update Password");
-//					scanf("%s",&edit[index].password);fflush(stdin);
 					if (strlen(edit[index].password) > 13 ||  strlen(edit[index].password) < 6) {
 
 						
@@ -519,7 +493,6 @@ void updateAdmin(){
 						}
 						getch ();
 						
-		//				lineText('b', "\t\t\t\tPasswords are not match!\t\t\t\t");
 						system ("cls");	
 						layoutXY (2);
 						gotoxy(_X + 25, _Y + 3);
@@ -530,7 +503,6 @@ void updateAdmin(){
 						printf ("%s", edit[index].userId);
 						gotoxy(_X +22, _Y + 15);
 						printf ("%s", edit[index].email);
-//						errorMessage();
 						goto updateProfileUserPassword;
 					}	
 					
@@ -538,11 +510,11 @@ void updateAdmin(){
 					i = 0;
 					while (1) {
 				        ch = getch();
-				        if (ch == '\r') {  // if Enter key is pressed
+				        if (ch == '\r') {
 					        confirmPassword[i] = '\0';
 					        break;
 				        } 
-						else if (ch == '\b' && i > 0) {  // if Backspace key is pressed
+						else if (ch == '\b' && i > 0) {
 					        i--;
 					        printf("\b \b");
 				        }
@@ -553,7 +525,6 @@ void updateAdmin(){
 					    }
 					}
 				    
-		//			scanf("%[^\n]s", &confirmPassword);fflush(stdin);
 					if (strcmp(edit[index].password, confirmPassword) == 0) {
 						checkPassword = '1';
 						
@@ -568,7 +539,6 @@ void updateAdmin(){
 						}
 						getch ();
 						
-		//				lineText('b', "\t\t\tSuccessfully Registered in!\t\t\t\t");
 					}
 					else
 					{
@@ -584,7 +554,6 @@ void updateAdmin(){
 						}
 						getch ();
 						
-		//				lineText('b', "\t\t\t\tPasswords are not match!\t\t\t\t");
 						system ("cls");	
 						layoutXY (2);
 						gotoxy(_X + 25, _Y + 3);

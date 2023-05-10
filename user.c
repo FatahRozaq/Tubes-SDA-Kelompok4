@@ -10,7 +10,6 @@ void userPage () {
 		
 		gotoxy(_X + 28, _Y + 26);
 		scanf (" %c", &inputUserPage); fflush (stdin);
-	//    inputUserPage = getch ();
 		if (inputUserPage == 'm' || inputUserPage == 'M') {
 			if (menu == 1) {
 				Menu:
@@ -60,8 +59,6 @@ void userPage () {
 						printf("%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c\n",201,205,205,205,205,205 ,205,205,205,205,205,205, 205,205,205,205, 187);
 						gotoxy(_X + 141, _Y + 2);
 						printf("%c", 186);
-//						gotoxy(_X + 125, _Y + 3);
-//						printf("%c               %c", 186, 186);
 						gotoxy(_X + 125, _Y + 3);
 						printf("%c %s ", 186, dataUser.user);
 						gotoxy(_X + 141, _Y + 3);

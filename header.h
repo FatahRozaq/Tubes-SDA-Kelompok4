@@ -49,17 +49,12 @@ FILE *file;
 User dataUser, logReg, check;
 
 //layout.c
-void line(int lineType);
-void lineText(char textType, char lineName[50]);
 void gotoxy(int x, int y);
 int getScreenWidth();
 int getScreenHeight();
 void layoutXY(int layoutType);
 void printBanner ();
 void printASCIIforBanner(char ch);
-void headerLayout(char leftHeader[50], char leftHeader2[50], char title[50]);
-void errorMessage();
-void inputType(char *typeHere);
 
 //loginRegister.c
 void loginUser();
@@ -87,6 +82,7 @@ void medicalCheckUpResults (char* diseaseResult);
 void medicalCheckUpRecommendation ();
 void medicalCheckUpDisclaimer ();
 alamat createlist(char* huruf);
+address rootPenyakit;
 void insLast(alamat *P, alamat *Last);
 void viewAsc(alamat First);
 alamat inputPertanyaan();
