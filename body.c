@@ -311,6 +311,13 @@ void printTree(address node, int space) {
     printf("\n");
 }
 
+void DifaDebugging(){
+	alamat First;
+	int noPertanyaan;
+	First=membangunModul();
+
+}
+
 //char* startAnalysis(Node *root) {
 //
 //    for (i = 10; i < space; i++) printf(" ");
