@@ -302,13 +302,22 @@ void printLine(int space) {
 
 // Menampilkan Binary Tree dengan notasi grafik
 void printTree(address node, int space) {
+ if (node == NULL) return;
 	int i;
-    if (node == NULL) return;
-
     space += 10;
 
-    printTree(node->no, space);
+    printTree(node->yes, space);
     printf("\n");
+
+    for (i = 10; i < space; i++) printf(" ");
+
+    printf("%s", node->question);
+
+    if (node->no != NULL && node->yes != NULL) {
+        printLine(space);
+    }
+
+    printTree(node->no, space);
 }
 
 void DifaDebugging(){
