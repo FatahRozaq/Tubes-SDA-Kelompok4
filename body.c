@@ -90,6 +90,7 @@ void menuPilihanInput(){
 	printf("\n1. Input Pertanyaan");
 	printf("\n2. Input Diagnosis");
 	printf("\n3. Daftar Penyakit dan Diagnosis");
+	printf("\n4. Menentukan skema tree pertanyaan dan diagnosis");
 	printf("\nPilihan : ");
 }
 address findNodeWithValue(address root, char* value) {
@@ -108,40 +109,107 @@ address findNodeWithValue(address root, char* value) {
 
     return foundNode;
 }
-void assignSubvarTree(address destNode, char valueNode[]){
+void assignSubvarTree(address destNode,alamat pPertanyaan, alamat pDiagnosis, char valueNode[])
+{
+	int no;
+	alamat pointerDiagnosis,pointerPertanyaan;
 	printf("\nPilih pertanyaan atau diagnosis yang ditampilkan jika No :");
-    printf("\nDiagnosis awali dengan huruf D (ex:D1)\n");
-    scanf("%s",valueNode);
-    assignNo(destNode,valueNode);
-    printf("\nPilih pertanyaan atau diagnosis yang ditampilkan jika Yes :");
-    printf("\nDiagnosis awali dengan huruf D (ex:D1)\n");
-    scanf("%s",valueNode);
-    assignYes(destNode,valueNode);
+	printf("\nDiagnosis awali dengan huruf D (ex:1D)\n");
+	scanf("%s", valueNode);
+	if(strstr(valueNode,"D")){
+		no = atoi(valueNode);
+		pointerDiagnosis = searchList(pDiagnosis, no);
+		assignNo(destNode,info(pointerDiagnosis));
+	}
+	else{
+		no = atoi(valueNode);
+		pointerPertanyaan = searchList(pPertanyaan, no);
+		assignNo(destNode,info(pointerPertanyaan));	
+	}
+	
+	printf("\nPilih pertanyaan atau diagnosis yang ditampilkan jika Yes :");
+	printf("\nDiagnosis awali dengan huruf D (ex:1D)\n");
+	scanf("%s", valueNode);
+	if(strstr(valueNode,"D")){
+		no = atoi(valueNode);
+		pointerDiagnosis = searchList(pDiagnosis, no);
+		assignYes(destNode,info(pointerDiagnosis));
+	}
+	else{
+		no = atoi(valueNode);
+		pointerPertanyaan = searchList(pPertanyaan, no);
+		assignYes(destNode,info(pointerPertanyaan));	
+	}
+}
+alamat searchList(alamat First, int noList)
+{
+	int i;
+	alamat Q;
+	i = 1;
+	Q = First;
+	while (info(Q) != Nil && i != noList)
+	{
+		Q = next(Q);
+		i++;
+	}
+	return Q;
 }
 
-address skemaTree(address root,alamat pPertanyaan, alamat pDiagnosis){
-    
-    int no;
-    char valueNode[2];
-    address searchPointer;
-    if(isEmpty(root)){
-    printf("\n Pilih Pertanyaan yang menjadi Root:");
-	scanf("%s",&valueNode);
-    root = createNode(valueNode);
-	assignSubvarTree(root,valueNode);
+address skemaTree(address root, alamat pPertanyaan, alamat pDiagnosis)
+{
 
-    }
-    
-	else{
-	printTree(root,0);
-	printf("\nIngin input ke node mana apa: ");
-	scanf("%s", &valueNode);
-	searchPointer=findNodeWithValue(root,valueNode);
-	assignSubvarTree(searchPointer,valueNode);
+	int no;
+	char valueNode[2];
+	char isiNode[100];
+	address searchPointer;
+	alamat pointerPertanyaan, pointerDiagnosis;
+	if (isEmpty(root))
+	{
+		printf("\n Pilih Pertanyaan yang menjadi Root:");
+		scanf("%s", &valueNode);
+		if (strstr(valueNode, "D"))
+		{
+			no = atoi(valueNode);
+			pointerDiagnosis = searchList(pDiagnosis, no);
+			root = createNode(info(pointerDiagnosis));
+		}
+		else
+		{
+			no = atoi(valueNode);
+			pointerPertanyaan = searchList(pPertanyaan, no);
+			root = createNode(info(pointerPertanyaan));
+		}
+
+		assignSubvarTree(root,  pPertanyaan,  pDiagnosis, valueNode);
 	}
-    printTree(root,0);
-    return root;
 
+	else
+	{
+		printf("\nPertanyaan \n");
+		viewAsc(pPertanyaan);
+		printf("\nDiagnosis : \n");
+		viewAsc(pDiagnosis);
+		printTree(root, 8);
+
+		printf("\nIngin input ke node mana: ");
+		scanf("%s", &valueNode);
+		if (strstr(valueNode, "D"))
+		{
+			no = atoi(valueNode);
+			pointerDiagnosis = searchList(pDiagnosis, no);
+			searchPointer = findNodeWithValue(root, info(pointerDiagnosis));
+			assignSubvarTree(searchPointer,pPertanyaan,  pDiagnosis, valueNode);
+		}
+		else
+		{
+			no = atoi(valueNode);
+			pointerPertanyaan = searchList(pPertanyaan, no);
+			searchPointer = findNodeWithValue(root, info(pointerPertanyaan));
+			assignSubvarTree(searchPointer,pPertanyaan,  pDiagnosis, valueNode);
+		}
+	}
+	printTree(root, 8);
+	return root;
 }
 
 address membangunModul(){
@@ -221,17 +289,7 @@ void deleteTree(Node *root) {
     deleteTree(root->no);
     free(root);
 }
-alamat searchPertanyaan(alamat First, int noPertanyaan){
-	int i;
-	alamat Q;
-	i=1;
-	Q=First;
-		while(info(Q)!=Nil&&i!=noPertanyaan){
-						Q=next(Q);
-						i++;
-					}
-	return Q;
-}
+
 void simpanPertanyaan(char pertanyaan[]){
 	
 	FILE *fp;
