@@ -1,9 +1,8 @@
 #include "header.h"
 
 void loginUser () {
-	char str[1000]; char *pos; char *pas, continueText [50]= "Press any key to continue ...";
-	int _X = getScreenWidth() / 2 - 31;
-	int _Y = getScreenHeight() / 2 - 9;
+	char str[1000], *pos, *pas, continueText [50]= "Press any key to continue ...";
+	int _X = getScreenWidth() / 2 - 31, _Y = getScreenHeight() / 2 - 9;
 	
 	file = fopen("user.txt", "r");
 	
@@ -145,7 +144,7 @@ void loginUser () {
 }
 
 void registerUser () {
-	char checkPassword = '0', confirmPassword[20], checkEmail[50], str[1000]; char *pos; char *pas, continueText [50]= "Press any key to continue ...";
+	char checkPassword = '0', confirmPassword[20], checkEmail[50], str[1000], *pos, *pas, continueText [50]= "Press any key to continue ...";
 	int _X = getScreenWidth() / 2 - 31, _Y = getScreenHeight() / 2 - 16, i, j;
 
 	system("cls");
@@ -410,10 +409,9 @@ void registerUser () {
 
 void updateProfileUser(){
 	User edit[50];
-	char id[50], checkPassword = '0', confirmPassword[20], checkEmail[50], continueText [50]= "Press any key to continue ...";
+	char id[50], checkPassword = '0', confirmPassword[20], checkEmail[50], continueText [50]= "Press any key to continue ...", str[1000], checkId[50], *pos;
 	FILE *check;
 	int index, i, _X = getScreenWidth() / 2 - 31, _Y = getScreenHeight() / 2 - 16, j;
-	char str[1000], checkId[50]; char *pos;
 	
 	strcpy(id, logReg.userId);
 	updateProfileUser:

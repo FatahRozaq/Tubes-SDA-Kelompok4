@@ -1,9 +1,7 @@
 #include "header.h"
-#define length 256
 
 void adminPage(){
-	char inputAdminPage;
-	char *temp;
+	char inputAdminPage, *temp;
 	int _X = getScreenWidth() / 2 - 70, _Y = getScreenHeight() / 2 - 16, menu = 1, profile = 1;
 
 	system ("cls");
@@ -145,7 +143,7 @@ void adminPage(){
 }
 
 void userData(){
-	char string[length], inputUserData;
+	char string[256], inputUserData;
 	int menu = 1, profile = 1, a, _X = getScreenWidth() / 2 - 70, _Y = getScreenHeight() / 2 - 16;
 	
 	system ("cls");
@@ -166,7 +164,7 @@ void userData(){
 			printf("\t| NO | USERNAME | ID | EMAIL | PASSWORD | USER |\n");
 			gotoxy (_X + 40, _Y + 12);
 			printf("    ==================================================");
-			while ((fgets(string, length, file)) != NULL) {
+			while ((fgets(string, 256, file)) != NULL) {
 				a++;
 				gotoxy (_X + 40, _Y + 12 + a);
 				printf("\t%d. %s\r", a, string);
@@ -299,10 +297,9 @@ void userData(){
 
 void updateAdmin(){
 	User edit[50];
-	char id[50], checkPassword = '0', confirmPassword[20], checkEmail[50], continueText [50]= "Press any key to continue ...";
+	char id[50], checkPassword = '0', confirmPassword[20], checkEmail[50], str[1000], checkId[50], *pos, continueText [50]= "Press any key to continue ...";
 	FILE *check;
 	int index, i, _X = getScreenWidth() / 2 - 31, _Y = getScreenHeight() / 2 - 16, j;
-	char str[1000], checkId[50]; char *pos;
 
 	gotoxy(_X + 100, _Y + 20);
 	printf("%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c\n",201,205, 205, 205 ,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205,205, 205, 205,187);
