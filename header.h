@@ -87,7 +87,7 @@ void insLast(alamat *P, alamat *Last);
 void viewAsc(alamat First);
 alamat inputPertanyaan();
 void deleteTree(Node *root);
-alamat searchPertanyaan(alamat First, int noPertanyaan);
+alamat searchList(alamat First, int noPertanyaan);
 void simpanPertanyaan(char pertanyaan[]);
 void createTree(alamat First);
 void menuPertanyaan(alamat First);
