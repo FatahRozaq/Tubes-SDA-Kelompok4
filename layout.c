@@ -441,18 +441,32 @@ void layoutXY (int layoutType) {
 			printf("===========================================================================================================================================\n");
 
 			break;
+			
+		case 9:
+			
+			_X = getScreenWidth() / 2 - 70;
+			_Y = getScreenHeight() / 2 - 16;
+			
+			for (i = 0; i < 6; i++) {
+				gotoxy(_X + 1, _Y + 1 + i);
+				for (j = 0; j < 120; j++) {
+					printASCIIforBanner(as[i][j]);
+				}
+				printf("\n");
+//			    Sleep(50);
+			}
+			
+			gotoxy(_X , _Y + 7);
+			printf("===========================================================================================================================================\n");
+			
+			break;
 	}
 }
 
 void printBanner() {
-	int i,j;
-	int widthOfScreen = getScreenWidth();
-	int heightOfScreen = getScreenHeight();
-
-	system ("cls");
-	int _X = widthOfScreen / 2 - 59;
-	int _Y = heightOfScreen / 2 - 9;
+	int i,j, widthOfScreen = getScreenWidth(), heightOfScreen = getScreenHeight(), _X = widthOfScreen / 2 - 59, _Y = heightOfScreen / 2 - 9;
 	
+	system ("cls");
 	char as[6][120] ={	"===]   ===]=======]======] ==] ======] =====] ==]          ======]==]  ==]=======] ======]==]  ==]    ==]   ==]======]",
 					  	"====] ====|==[____/==[__==]==|==[____/==[__==]==|         ==[____/==|  ==|==[____/==[____/==| ==[/    ==|   ==|==[__==]",
 					  	"==[====[==|=====]  ==|  ==|==|==|     =======|==|         ==|     =======|=====]  ==|     =====[/     ==|   ==|======[/",

@@ -34,6 +34,8 @@ void insLast(alamat *P, alamat *Last){
 }
 
 void viewAsc(alamat First){
+	
+//	int _X = getScreenWidth() / 2 - 70, _Y = getScreenHeight() / 2 - 16;
 	alamat P;
 	int i;
 	i=1;
@@ -43,7 +45,7 @@ void viewAsc(alamat First){
 		P = First;
 	while (P != Nil)
 	{
-		printf("%d. %s \n", i, info(P));
+		printf("\t\t\t\t\t\t\t\t\t\t\t\t%d. %s \n", i, info(P));
 		P = next(P);
 		i++;
 	}
@@ -51,9 +53,11 @@ void viewAsc(alamat First){
 
 void inputTanya(alamat *First,alamat *Last){
 	
+	int _X = getScreenWidth() / 2 - 70, _Y = getScreenHeight() / 2 - 16;
 	char input[100];
 	alamat P;
-		printf("\nMasukkan pertanyaan :");
+		gotoxy (_X + 40, _Y + 15);
+		printf("Masukkan pertanyaan :");
 		scanf("\n%[^\n]", input); // membaca input string dari pengguna
 		
 		if (*First == Nil){
@@ -68,10 +72,11 @@ void inputTanya(alamat *First,alamat *Last){
 	
 }
 void inputDiagnosis(alamat *First,alamat *Last){
-	
+	int _X = getScreenWidth() / 2 - 70, _Y = getScreenHeight() / 2 - 16;
 	char input[100];
 	alamat P;
-		printf("\nMasukkan Diagnosis :");
+		gotoxy (_X + 40, _Y + 15);
+		printf("Masukkan Diagnosis :");
 		scanf("\n%[^\n]", input); // membaca input string dari pengguna
 		
 		if (*First == Nil){
@@ -87,11 +92,15 @@ void inputDiagnosis(alamat *First,alamat *Last){
 }
 
 void menuPilihanInput(){
-	printf("\n1. Input Pertanyaan");
-	printf("\n2. Input Diagnosis");
-	printf("\n3. Daftar Penyakit dan Diagnosis");
-	printf("\n4. Menentukan skema tree pertanyaan dan diagnosis");
-	printf("\nPilihan : ");
+	int _X = getScreenWidth() / 2 - 70, _Y = getScreenHeight() / 2 - 16;
+	gotoxy (_X + 40, _Y + 14);
+	printf("1. Input Pertanyaan");
+	gotoxy (_X + 40, _Y + 15);
+	printf("2. Input Diagnosis");
+	gotoxy (_X + 40, _Y + 16);
+	printf("3. Daftar Penyakit dan Diagnosis");
+	gotoxy (_X + 40, _Y + 17);
+	printf("Pilihan : ");
 }
 address findNodeWithValue(address root, char* value) {
     if (root == NULL) {
@@ -109,107 +118,40 @@ address findNodeWithValue(address root, char* value) {
 
     return foundNode;
 }
-void assignSubvarTree(address destNode,alamat pPertanyaan, alamat pDiagnosis, char valueNode[])
-{
-	int no;
-	alamat pointerDiagnosis,pointerPertanyaan;
-	printf("\nPilih pertanyaan atau diagnosis yang ditampilkan jika No :");
-	printf("\nDiagnosis awali dengan huruf D (ex:1D)\n");
-	scanf("%s", valueNode);
-	if(strstr(valueNode,"D")){
-		no = atoi(valueNode);
-		pointerDiagnosis = searchList(pDiagnosis, no);
-		assignNo(destNode,info(pointerDiagnosis));
-	}
-	else{
-		no = atoi(valueNode);
-		pointerPertanyaan = searchList(pPertanyaan, no);
-		assignNo(destNode,info(pointerPertanyaan));	
-	}
-	
-	printf("\nPilih pertanyaan atau diagnosis yang ditampilkan jika Yes :");
-	printf("\nDiagnosis awali dengan huruf D (ex:1D)\n");
-	scanf("%s", valueNode);
-	if(strstr(valueNode,"D")){
-		no = atoi(valueNode);
-		pointerDiagnosis = searchList(pDiagnosis, no);
-		assignYes(destNode,info(pointerDiagnosis));
-	}
-	else{
-		no = atoi(valueNode);
-		pointerPertanyaan = searchList(pPertanyaan, no);
-		assignYes(destNode,info(pointerPertanyaan));	
-	}
-}
-alamat searchList(alamat First, int noList)
-{
-	int i;
-	alamat Q;
-	i = 1;
-	Q = First;
-	while (info(Q) != Nil && i != noList)
-	{
-		Q = next(Q);
-		i++;
-	}
-	return Q;
+void assignSubvarTree(address destNode, char valueNode[]){
+	printf("\n\n\t\t\t\t\t\t\t\t\t\t\t\tPilih pertanyaan atau diagnosis yang ditampilkan jika No :");
+    printf("\n\n\t\t\t\t\t\t\t\t\t\t\t\tDiagnosis awali dengan huruf D (ex:D1)\n");
+    scanf("%s",valueNode);
+    assignNo(destNode,valueNode);
+    printf("\n\n\t\t\t\t\t\t\t\t\t\t\t\tPilih pertanyaan atau diagnosis yang ditampilkan jika Yes :");
+    printf("\n\n\t\t\t\t\t\t\t\t\t\t\t\tDiagnosis awali dengan huruf D (ex:D1)\n");
+    scanf("%s",valueNode);
+    assignYes(destNode,valueNode);
 }
 
-address skemaTree(address root, alamat pPertanyaan, alamat pDiagnosis)
-{
+address skemaTree(address root,alamat pPertanyaan, alamat pDiagnosis){
+    
+    int no;
+    char valueNode[2];
+    address searchPointer;
+    if(isEmpty(root)){
+    printf("\n\n\t\t\t\t\t\t\t\t\t\t\t\tPilih Pertanyaan yang menjadi Root:");
+	scanf("%s",&valueNode);
+    root = createNode(valueNode);
+	assignSubvarTree(root,valueNode);
 
-	int no;
-	char valueNode[2];
-	char isiNode[100];
-	address searchPointer;
-	alamat pointerPertanyaan, pointerDiagnosis;
-	if (isEmpty(root))
-	{
-		printf("\n Pilih Pertanyaan yang menjadi Root:");
-		scanf("%s", &valueNode);
-		if (strstr(valueNode, "D"))
-		{
-			no = atoi(valueNode);
-			pointerDiagnosis = searchList(pDiagnosis, no);
-			root = createNode(info(pointerDiagnosis));
-		}
-		else
-		{
-			no = atoi(valueNode);
-			pointerPertanyaan = searchList(pPertanyaan, no);
-			root = createNode(info(pointerPertanyaan));
-		}
-
-		assignSubvarTree(root,  pPertanyaan,  pDiagnosis, valueNode);
+    }
+    
+	else{
+	printTree(root,0);
+	printf("\nIngin input ke node mana apa: ");
+	scanf("%s", &valueNode);
+	searchPointer=findNodeWithValue(root,valueNode);
+	assignSubvarTree(searchPointer,valueNode);
 	}
+    printTree(root,0);
+    return root;
 
-	else
-	{
-		printf("\nPertanyaan \n");
-		viewAsc(pPertanyaan);
-		printf("\nDiagnosis : \n");
-		viewAsc(pDiagnosis);
-		printTree(root, 8);
-
-		printf("\nIngin input ke node mana: ");
-		scanf("%s", &valueNode);
-		if (strstr(valueNode, "D"))
-		{
-			no = atoi(valueNode);
-			pointerDiagnosis = searchList(pDiagnosis, no);
-			searchPointer = findNodeWithValue(root, info(pointerDiagnosis));
-			assignSubvarTree(searchPointer,pPertanyaan,  pDiagnosis, valueNode);
-		}
-		else
-		{
-			no = atoi(valueNode);
-			pointerPertanyaan = searchList(pPertanyaan, no);
-			searchPointer = findNodeWithValue(root, info(pointerPertanyaan));
-			assignSubvarTree(searchPointer,pPertanyaan,  pDiagnosis, valueNode);
-		}
-	}
-	printTree(root, 8);
-	return root;
 }
 
 address membangunModul(){
@@ -218,7 +160,7 @@ address membangunModul(){
 	address root;
 	alamat lastPenyakit,lastDiagnosis;
 	char choice;
-	int pilih;
+	int pilih, _X = getScreenWidth() / 2 - 70, _Y = getScreenHeight() / 2 - 16;
 	lastPenyakit=Nil;
 	lastDiagnosis=Nil;
 	pPertanyaan = Nil;
@@ -226,7 +168,10 @@ address membangunModul(){
 	root=Nil;
 	First=Nil;
 	Last=Nil;
-	printf("\nMasukkan jenis penyakit :");
+	system ("cls");
+	layoutXY (6);
+	gotoxy (_X + 40, _Y + 11);
+	printf("Masukkan jenis penyakit :");
 	scanf("%[^\n]",&jenisPenyakit);
 	
 	
@@ -235,11 +180,14 @@ address membangunModul(){
 	choice = 'y';
 	do{
 	system("cls");
-	printf("\nJenis Penyakit : %s", jenisPenyakit);
+	layoutXY (6);
+	gotoxy (_X + 40, _Y + 13);
+	printf("Jenis Penyakit : %s", jenisPenyakit);
 	
 	menuPilihanInput();
 	scanf("%d",&pilih);
-	
+	system ("cls");
+	layoutXY (6);
 	if(pilih == 1){
 		inputTanya(&pPertanyaan,&lastPenyakit);
 	}
@@ -249,16 +197,22 @@ address membangunModul(){
 	}
 	
 	else if (pilih == 3){
-		printf("\nPertanyaan \n");
+		system ("cls");
+		layoutXY (9);
+//		gotoxy (_X + 40, _Y + 11);
+		printf("\n\n\t\t\t\t\t\t\t\t\t\t\t\tPertanyaan \n");
 		viewAsc(pPertanyaan);
-		printf("\nDiagnosis : \n");
+//		gotoxy (_X + 40, _Y + 19);
+		printf("\n\t\t\t\t\t\t\t\t\t\t\t\tDiagnosis : \n");
 		viewAsc(pDiagnosis);
 	}
 	
 	else if(pilih == 4){
-		printf("\nPertanyaan : \n");
+		system ("cls");
+		layoutXY (9);
+		printf("\n\n\t\t\t\t\t\t\t\t\t\t\t\tPertanyaan : \n");
 		viewAsc(pPertanyaan);
-		printf("\nDiagnosis : \n");
+		printf("\n\t\t\t\t\t\t\t\t\t\t\t\tDiagnosis : \n");
 		viewAsc(pDiagnosis);
 		
 	root =skemaTree(root,pPertanyaan,pDiagnosis);
@@ -270,7 +224,8 @@ address membangunModul(){
 		
 		
 		
-		printf("\n\nKembali ke menu sebelumnya?");
+		gotoxy (_X + 40, _Y + 27);
+		printf("Kembali ke menu sebelumnya?");
 		scanf("\n%c",&choice);
 	}while(choice=='y'||choice=='Y');
 	
@@ -289,7 +244,17 @@ void deleteTree(Node *root) {
     deleteTree(root->no);
     free(root);
 }
-
+alamat searchPertanyaan(alamat First, int noPertanyaan){
+	int i;
+	alamat Q;
+	i=1;
+	Q=First;
+		while(info(Q)!=Nil&&i!=noPertanyaan){
+						Q=next(Q);
+						i++;
+					}
+	return Q;
+}
 void simpanPertanyaan(char pertanyaan[]){
 	
 	FILE *fp;
