@@ -136,6 +136,10 @@ void adminPage(){
 			printBanner ();
 			break;
 		}
+		else if (menu == 0 && (inputAdminPage == 'c' || inputAdminPage == 'C')) {
+			cariFilePenyakit ();
+			break;
+		}
 		else {
 			FlushConsoleInputBuffer(GetStdHandle(STD_INPUT_HANDLE));
 		}

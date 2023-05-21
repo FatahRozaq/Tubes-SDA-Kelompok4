@@ -96,6 +96,7 @@ void assignYes(address nodeTree, char pertanyaan[]);
 void printLine(int space);
 void printTree(address node, int space);
 void simpanRoot(char root[]);
+
 //karakterPenyakit
 void karakteristikPenyakit();
 addressKarakterPenyakit createNodePenyakit(int id, char* namaPenyakit, char* karakteristik);
@@ -106,4 +107,6 @@ void displayList(addressKarakterPenyakit head);
 void saveListToFile(addressKarakterPenyakit head, char* filename);
 void loadListFromFile(addressKarakterPenyakit *head, char* filename);
 
-
+//cariPenyakit
+void cariPertanyaanJenisPenyakit(const char* nama_file, const char* jenis_penyakit, const char* nomor_pertanyaan);
+void cariFilePenyakit();
