@@ -88,14 +88,14 @@ void viewAsc(alamat First);
 alamat inputPertanyaan();
 void deleteTree(Node *root);
 alamat searchList(alamat First, int noPertanyaan);
-void simpanPertanyaan(char pertanyaan[]);
+void simpanPertanyaan(alamat pPertanyaan,alamat pDiagnosis);
 void createTree(alamat First);
 void menuPertanyaan(alamat First);
 void assignNo(address nodeTree, char pertanyaan[]);
 void assignYes(address nodeTree, char pertanyaan[]);
 void printLine(int space);
 void printTree(address node, int space);
-
+void simpanRoot(char root[]);
 //karakterPenyakit
 void karakteristikPenyakit();
 addressKarakterPenyakit createNodePenyakit(int id, char* namaPenyakit, char* karakteristik);

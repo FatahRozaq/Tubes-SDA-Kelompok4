@@ -137,6 +137,7 @@ address skemaTree(address root,alamat pPertanyaan, alamat pDiagnosis){
     if(isEmpty(root)){
     printf("\n\n\t\t\t\t\t\t\t\t\t\t\t\tPilih Pertanyaan yang menjadi Root:");
 	scanf("%s",&valueNode);
+	simpanRoot(valueNode);
     root = createNode(valueNode);
 	assignSubvarTree(root,valueNode);
 
@@ -144,9 +145,10 @@ address skemaTree(address root,alamat pPertanyaan, alamat pDiagnosis){
     
 	else{
 	printTree(root,0);
-	printf("\nIngin input ke node mana apa: ");
+	printf("\nIngin input ke node apa: ");
 	scanf("%s", &valueNode);
 	searchPointer=findNodeWithValue(root,valueNode);
+	simpanRoot(valueNode);
 	assignSubvarTree(searchPointer,valueNode);
 	}
     printTree(root,0);
@@ -173,8 +175,8 @@ address membangunModul(){
 	gotoxy (_X + 40, _Y + 11);
 	printf("Masukkan jenis penyakit :");
 	scanf("%[^\n]",&jenisPenyakit);
-	
-	
+	simpanJenisPenyakit(jenisPenyakit);
+	simpanJPtoSkema(jenisPenyakit);
 
 	
 	choice = 'y';
@@ -208,6 +210,7 @@ address membangunModul(){
 	}
 	
 	else if(pilih == 4){
+		simpanPertanyaan(pPertanyaan,pDiagnosis);
 		system ("cls");
 		layoutXY (9);
 		printf("\n\n\t\t\t\t\t\t\t\t\t\t\t\tPertanyaan : \n");
@@ -255,13 +258,43 @@ alamat searchPertanyaan(alamat First, int noPertanyaan){
 					}
 	return Q;
 }
-void simpanPertanyaan(char pertanyaan[]){
+
+void simpanRoot(char root[]){
+	
+	FILE *fp;
+   char ch;
+   char *filename = "skemaTree.txt";
+   
+   fp = fopen(filename, "a");
+
+   /* Write content to file */
+   fprintf(fp, "Q%s|", root);
+
+   fclose(fp);
+
+}
+
+void simpanJPtoSkema(char jenisPenyakit[]){
+	
+	FILE *fp;
+   char ch;
+   char *filename = "skemaTree.txt";
+   
+   fp = fopen(filename, "a");
+
+   /* Write content to file */
+   fprintf(fp, "JenisPenyakit:%s\n", jenisPenyakit);
+
+   fclose(fp);
+
+}
+void simpanJenisPenyakit(char jenisPenyakit[]){
 	
 	FILE *fp;
    char ch;
    char *filename = "daftarPertanyaan.txt";
 
-   int angka;
+ 
 
 
 
@@ -269,7 +302,34 @@ void simpanPertanyaan(char pertanyaan[]){
    fp = fopen(filename, "a");
 
    /* Write content to file */
-   fprintf(fp, "%s\n", pertanyaan);
+   fprintf(fp, "JenisPenyakit:%s\n", jenisPenyakit);
+
+   fclose(fp);
+
+}
+void simpanPertanyaan(alamat pPertanyaan,alamat pDiagnosis){
+	
+	FILE *fp;
+   char ch;
+   char *filename = "daftarPertanyaan.txt";
+
+   int angka;
+   angka=1;
+   fp = fopen(filename, "a");
+
+   /* Write content to file */
+   while(pPertanyaan !=NULL){
+   	fprintf(fp, "Q%d|%s\n",angka,pPertanyaan->info);
+   	angka++;
+   	pPertanyaan=next(pPertanyaan);
+   }
+   angka=1;
+   while(pDiagnosis !=NULL){
+   	fprintf(fp, "D%d|%s\n",angka, pDiagnosis->info);
+   	angka++;
+   	pDiagnosis=next(pDiagnosis);
+   }
+   
 
    fclose(fp);
 
@@ -306,16 +366,56 @@ void printNode(char leaf[]){
 	printf("Anda didiagnosa : %s", leaf);
 }
 
+void simpanNo(char node[]){
+	
+	FILE *fp;
+   char ch;
+   char *filename = "skemaTree.txt";
+   
+   fp = fopen(filename, "a");
+
+   /* Write content to file */
+
+   
+   fprintf(fp, "%s,", node);
+ 
+
+   fclose(fp);
+
+}
+
+void simpanYes(char node[]){
+	
+	FILE *fp;
+   char ch;
+   char *filename = "skemaTree.txt";
+   
+   fp = fopen(filename, "a");
+
+   /* Write content to file */
+
+   
+   fprintf(fp, "%s\n", node);
+   
+   
+
+   fclose(fp);
+
+}
+
+
 void assignNo(address nodeTree, char pertanyaan[]){
 	address P;
 	P=createNode(pertanyaan);
 	nodeTree->no=P;
+	simpanNo(pertanyaan);
 }
 
 void assignYes(address nodeTree, char pertanyaan[]){
 	address P;
 	P=createNode(pertanyaan);
 	nodeTree->yes=P;
+	simpanYes(pertanyaan);
 }
 
 // Mencetak garis penghubung antara node dalam Binary Tree
