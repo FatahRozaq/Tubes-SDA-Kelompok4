@@ -44,7 +44,15 @@ typedef struct Node {
 	char question[100];
 	address yes, no;
 } Node;
-
+typedef struct jPenyakit *alamatJP; 
+typedef struct jPenyakit
+{
+	alamatJP prev;
+	infotype info;
+	address tree;
+	alamatJP next;
+	
+} jPenyakit;
 FILE *file;
 User dataUser, logReg, check;
 
@@ -95,8 +103,12 @@ void assignNo(address nodeTree, char pertanyaan[]);
 void assignYes(address nodeTree, char pertanyaan[]);
 void printLine(int space);
 void printTree(address node, int space);
+alamatJP pLastJP;
 void simpanRoot(char root[]);
-
+void simpanJPtoSkema(char jenisPenyakit[]);
+alamatJP pFirstJP;
+alamatJP searchJP(char jenPenyakit[]);
+void simpanJenisPenyakit(char jenisPenyakit[]);
 //karakterPenyakit
 void karakteristikPenyakit();
 addressKarakterPenyakit createNodePenyakit(int id, char* namaPenyakit, char* karakteristik);

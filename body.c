@@ -27,10 +27,27 @@ alamat createlist(char* huruf)
 	return D;
 }
 
+alamatJP createlistJP(char* huruf)
+{
+	alamatJP D;
+	D = (alamatJP)malloc(sizeof(jPenyakit)); // alokasi memori sebesar D
+	info(D) = (char*)malloc((strlen(huruf)+1)*sizeof(char)); // alokasi memori sebesar string huruf yang akan disimpan
+	strcpy(info(D), huruf); // salin string ke dalam node
+	next(D) = Nil;						   // membuat list menunjuk ke nil
+	prev(D) = Nil;
+	return D;
+}
+
 void insLast(alamat *P, alamat *Last){
 	prev(*P) = *Last;
 	next(*Last) = *P;
 	*Last = *P;
+}
+
+void insLastJP(alamatJP JP, alamatJP Last){
+	prev(JP) = pLastJP;
+	next(pLastJP) = JP;
+	pLastJP = JP;
 }
 
 void viewAsc(alamat First){
@@ -50,6 +67,23 @@ void viewAsc(alamat First){
 		i++;
 	}
 }
+
+void viewAscJP(){
+	alamatJP P;
+	int i;
+	i=1;
+	if (pFirstJP == Nil){
+		printf("Daftar Kosong\n");
+	}
+		P = pFirstJP;
+	while (P != Nil)
+	{
+		printf("\t\t\t\t\t\t\t\t\t\t\t\t%d. %s \n", i, info(P));
+		P = next(P);
+		i++;
+	}
+}
+
 
 void inputTanya(alamat *First,alamat *Last){
 	
@@ -161,6 +195,7 @@ address membangunModul(){
 	alamat P,D,First,Last,pPertanyaan,pDiagnosis;
 	address root;
 	alamat lastPenyakit,lastDiagnosis;
+	alamatJP JP,pSearchJP;
 	char choice;
 	int pilih, _X = getScreenWidth() / 2 - 70, _Y = getScreenHeight() / 2 - 16;
 	lastPenyakit=Nil;
@@ -173,8 +208,20 @@ address membangunModul(){
 	system ("cls");
 	layoutXY (6);
 	gotoxy (_X + 40, _Y + 11);
+	viewAscJP();
+	gotoxy (_X + 40, _Y + 12);
 	printf("Masukkan jenis penyakit :");
 	scanf("%[^\n]",&jenisPenyakit);
+	
+	if (pFirstJP == Nil){
+			JP =createlistJP(jenisPenyakit);
+			pFirstJP = JP;
+			pLastJP = JP;
+		}
+		else{
+			JP =createlistJP(jenisPenyakit);
+			insLastJP(JP,pLastJP);
+		}
 	simpanJenisPenyakit(jenisPenyakit);
 	simpanJPtoSkema(jenisPenyakit);
 
@@ -219,6 +266,8 @@ address membangunModul(){
 		viewAsc(pDiagnosis);
 		
 	root =skemaTree(root,pPertanyaan,pDiagnosis);
+	JP->tree=root;
+	printf("\n\nTree nya adalah root : %s",JP->tree->question);
 	}
 	
 	else if(pilih== 5){
@@ -255,6 +304,16 @@ alamat searchPertanyaan(alamat First, int noPertanyaan){
 		while(info(Q)!=Nil&&i!=noPertanyaan){
 						Q=next(Q);
 						i++;
+					}
+	return Q;
+}
+
+alamatJP searchJP(char jenPenyakit[]){
+	alamatJP Q;
+	Q =Nil;
+	Q=pFirstJP;
+		while(info(Q)!=Nil||info(Q)!=jenPenyakit){
+						Q=next(Q);
 					}
 	return Q;
 }
@@ -334,6 +393,24 @@ void simpanPertanyaan(alamat pPertanyaan,alamat pDiagnosis){
    fclose(fp);
 
 }
+
+//void fileToTree(){
+//		FILE *fp;
+//   char ch;
+//   char *filename = "skemaTree.txt";
+//
+// 
+//
+//
+//
+//   
+//   fp = fopen(filename, "a");
+//
+//   /* Write content to file */
+//   //fprintf(fp, "JenisPenyakit:%s\n", jenisPenyakit);
+//
+//   fclose(fp);
+//}
 
 
 void menuPertanyaan(alamat First){
