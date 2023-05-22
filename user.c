@@ -102,7 +102,8 @@ void userPage () {
 			}
 		}
 		else if (menu == 0 && (inputUserPage == 's' || inputUserPage == 'S')) {
-			medicalCheckUp ();
+//			medicalCheckUp ();
+			cariFilePenyakit();
 			break;
 		}
 		else if (menu == 0 && (inputUserPage == 'b' || inputUserPage == 'B')) {
