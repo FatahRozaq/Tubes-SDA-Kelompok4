@@ -142,12 +142,14 @@ void medicalCheckUp () {
 
 	system ("cls");
 	layoutXY (8);
+//	cariFilePenyakit();
 	
 	gotoxy(_X + 28, _Y + 26);
 	scanf (" %c", &inputMedicalCheckUp); fflush (stdin);
 	
 	switch (inputMedicalCheckUp) {
 		case '1':
+//			cariFilePenyakit();
 			medicalCheckUpResults (startAnalysis(rootPenyakit));
 //			root = createNode("Apakah Anda mengalami sakit dada? (y/n) ");
 //		    root->yes = createNode("Apakah sakit dada berlangsung lebih dari 5 menit? (y/n) ");

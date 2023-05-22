@@ -8,7 +8,9 @@ void cariPertanyaanJenisPenyakit(const char* nama_file, const char* jenis_penyak
     if (file == NULL) {
         printf("Gagal membuka file.\n");
         return;
-    }
+    }else{
+    	printf("File ditemukan.\n");
+	}
 
     char line[MAX_LINE_LENGTH];
     int is_jenis_penyakit = 0;
@@ -34,6 +36,7 @@ void cariPertanyaanJenisPenyakit(const char* nama_file, const char* jenis_penyak
             		printf("Pertanyaan: %s", line);
 				}else if(is_jenis_penyakit && line[0] == 'D'){
 					printf("Diagnosis: %s", line);
+					exit(0);
 //					exit(0);
 				}
                 

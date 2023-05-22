@@ -137,7 +137,7 @@ void adminPage(){
 			break;
 		}
 		else if (menu == 0 && (inputAdminPage == 'c' || inputAdminPage == 'C')) {
-			cariFilePenyakit ();
+			medicalCheckUp();
 			break;
 		}
 		else {

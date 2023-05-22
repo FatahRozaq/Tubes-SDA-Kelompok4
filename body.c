@@ -312,7 +312,7 @@ alamatJP searchJP(char jenPenyakit[]){
 	alamatJP Q;
 	Q =Nil;
 	Q=pFirstJP;
-		while(info(Q)!=Nil||info(Q)!=jenPenyakit){
+		while(info(Q)!=Nil&&strcmp(info(Q), jenPenyakit)!=0){
 						Q=next(Q);
 					}
 	return Q;
@@ -573,10 +573,24 @@ void DifaDebugging(){
 
 char* startAnalysis(address root) {
     char answer[10];
-    address current = root;
+    char jenPenyakit[20];
+    char hasilAkhir[20];
+    
+    
+    printf("Masukan jenis penyakit yang ingin dicari: ");
+    scanf("%s", &jenPenyakit);
+    alamatJP pointerJP = searchJP(jenPenyakit);
+    address current = pointerJP->tree;
+    
+//    cariFilePenyakit();
     while (current != NULL) {
-    	if(current->yes != NULL || current->yes != NULL){
-    		printf("%s", current->question);
+    	char newStr[4];
+    	char* pNewStr = newStr;
+    	*pNewStr++ = 'Q';
+    	strcpy(pNewStr, current->question);
+    	if(current->yes != NULL || current->no != NULL){
+    		cariPertanyaanJenisPenyakit("daftarPertanyaan.txt", jenPenyakit, newStr);
+//    		printf("%s", current->question);
 	        scanf("%s", answer);
 	        if (strcmp(answer, "y") == 0) {
 				current = current->yes;
@@ -591,7 +605,8 @@ char* startAnalysis(address root) {
 	            printf("Maaf, Input yang anda lakukan tidak valid.\n");
 	        }
 		}else{
-			return(current->question);
+			cariPertanyaanJenisPenyakit("daftarPertanyaan.txt", jenPenyakit, current->question);
+//			return(current->question);
 		}
         
     }
