@@ -257,7 +257,7 @@ address membangunModul(){
 	}
 	
 	else if(pilih == 4){
-		simpanPertanyaan(pPertanyaan,pDiagnosis);
+	
 		system ("cls");
 		layoutXY (9);
 		printf("\n\n\t\t\t\t\t\t\t\t\t\t\t\tPertanyaan : \n");
@@ -271,6 +271,7 @@ address membangunModul(){
 	}
 	
 	else if(pilih== 5){
+			simpanPertanyaan(pPertanyaan,pDiagnosis);
 		return root;
 	}
 		
