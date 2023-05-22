@@ -7,7 +7,9 @@ int main(){
 	ShowWindow(GetConsoleWindow(), SW_MAXIMIZE);
 	
 	system("title Medical Check Up");
-	DifaDebugging();
+	
 	
 	printBanner ();
+	DifaDebugging();
+	
 }

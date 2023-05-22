@@ -32,7 +32,7 @@ CompilerSettings=0000000000000000000000000
 <<<<<<< HEAD
 UnitCount=8
 =======
-UnitCount=9
+UnitCount=10
 >>>>>>> 30ab71c4590f66aace66b60d87d3dd05b4390b4d
 
 [VersionInfo]
@@ -207,6 +207,16 @@ BuildCmd=
 
 [Unit9]
 FileName=karakterPenyakit.c
+CompileCpp=0
+Folder=
+Compile=1
+Link=1
+Priority=1000
+OverrideBuildCmd=0
+BuildCmd=
+
+[Unit10]
+FileName=cariPenyakit.c
 CompileCpp=0
 Folder=
 Compile=1
